@@ -7,7 +7,7 @@ import { WhatParentSays } from "@/components/layout/Home/WhatParentSays";
 import Layout from "@/components/layout/Layout";
 import { OurStudents } from "@/components/layout/Students/OurStudents";
 import { SuccessStories } from "@/components/layout/Students/SuccessStories";
-import { Preview } from "@/components/layout/video/Preview";
+// import { Preview } from "@/components/layout/video/Preview";
 
 export default function Home() {
   return (

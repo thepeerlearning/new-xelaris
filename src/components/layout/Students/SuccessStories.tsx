@@ -15,13 +15,31 @@ interface SuccessStory {
 const imgZachMath =
   "https://res.cloudinary.com/seunsanyaa/image/upload/v1767016642/b9ea01b0a622041d935a5553077ac9ca5bdc6cca_1_j76bf0.png"
 const imgFedir2024 =
-  "https://res.cloudinary.com/seunsanyaa/video/upload/v1767000726/First_Video_fiqdbq.mov"
+  "https://res.cloudinary.com/seunsanyaa/video/upload/v1767000726/First_Video_fiqdbq.mp4"
 const imgZachAI =
-  "https://res.cloudinary.com/seunsanyaa/video/upload/v1767000701/Second_Video_rcgegn.mov"
+  "https://res.cloudinary.com/seunsanyaa/video/upload/v1767000701/Second_Video_rcgegn.mp4"
 const imgFedir2025 =
   "https://res.cloudinary.com/seunsanyaa/video/upload/v1767000658/Third_Video_rwnmnq.mp4"
 const playButtonIcon =
   "https://res.cloudinary.com/seunsanyaa/image/upload/v1766252550/Component_1_1_vndzqq.png"
+
+// Helper function to generate poster/thumbnail from video URL using Cloudinary
+const getVideoPoster = (videoUrl: string): string => {
+  // Convert Cloudinary video URL to thumbnail by extracting first frame
+  // Try using Cloudinary's image transformation API on the video
+  // This extracts a frame at the start (0 seconds) and converts to jpg
+  try {
+    // Method 1: Use video transformation with start offset
+    // Format: /video/upload/so_0/v{version}/{public_id}.jpg
+    const thumbnailUrl = videoUrl
+      .replace("/video/upload/", "/video/upload/so_0/")
+      .replace(/\.mp4$/, ".jpg")
+    return thumbnailUrl
+  } catch {
+    // Fallback to original URL if transformation fails
+    return videoUrl
+  }
+}
 
 export function SuccessStories() {
   const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(
@@ -267,6 +285,11 @@ export function SuccessStories() {
                                       src={story.videoUrl}
                                       className="w-full h-full object-cover rounded-xl sm:rounded-2xl"
                                       preload="metadata"
+                                      poster={
+                                        story.videoUrl
+                                          ? getVideoPoster(story.videoUrl)
+                                          : undefined
+                                      }
                                       muted
                                       playsInline
                                     >
@@ -405,6 +428,11 @@ export function SuccessStories() {
                                       src={story.videoUrl}
                                       className="w-full h-full object-cover rounded-xl xl:rounded-2xl"
                                       preload="metadata"
+                                      poster={
+                                        story.videoUrl
+                                          ? getVideoPoster(story.videoUrl)
+                                          : undefined
+                                      }
                                     >
                                       <source src={story.videoUrl} />
                                     </video>
