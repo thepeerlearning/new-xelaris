@@ -467,7 +467,7 @@ export function Footer({ onContact, onSocialClick }: FooterProps) {
             <p className="mb-0 font-bold">programs is developed and taught exclusively </p>
             <p className="mb-0 font-bold">
               <span className="font-bold">{`by a `}</span>
-              <span className="font-bold text-[#fefc00] underline decoration-solid underline-offset-2">{`team`}</span>
+              <Link href="/about" className="font-bold text-[#fefc00] underline decoration-solid underline-offset-2">{`team`}</Link>
               <span className="font-bold">{` of professional`}</span>
               <span className="font-bold">{` engineers.  `}</span>
             </p>

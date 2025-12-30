@@ -116,7 +116,7 @@ export function OurStudents() {
   const currentProjectImage = projectImages[selectedProject] || projectImages["Mortgage Calculator"];
 
   return (
-    <div className="flex flex-col items-center w-full py-12 sm:py-16 md:py-20 lg:pt-6 xl:pt-8 2xl:pt-10 lg:pb-16 xl:pb-24 2xl:pb-32 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-30 2xl:px-20">
+    <div className="flex flex-col items-center w-full py-12 sm:py-16 md:py-0 l lg:pb-16 xl:pb-24 2xl:pb-32 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-30 2xl:px-20">
       <div className="flex flex-col lg:flex-row items-center lg:items-start w-full max-w-7xl xl:max-w-[90rem] 2xl:max-w-[1440px] gap-4 sm:gap-5 md:gap-6 lg:gap-0">
         {/* Header Section - Mobile Only */}
         <div className="flex lg:hidden flex-col gap-2 sm:gap-3 md:gap-4 items-center w-full">

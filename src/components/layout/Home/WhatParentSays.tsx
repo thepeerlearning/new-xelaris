@@ -224,8 +224,8 @@ export function WhatParentSays() {
 
                 {/* Closed State - Rotated Text */}
                 {!isOpen && (
-                  <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 flex items-center justify-center transition-opacity duration-300">
-                <div className="transform -rotate-90 whitespace-nowrap origin-center">
+                  <div className="bottom-8   flex items-center justify-center transition-opacity duration-300 rotate-270 w-full h-full ">
+                <div className="whitespace-nowrap origin-center px-10">
                   <div className="flex flex-col items-start text-left">
                     <h3 className="font-bold text-white text-2xl xl:text-3xl 2xl:text-4xl leading-tight tracking-[0.15rem] xl:tracking-[0.2rem] 2xl:tracking-[0.25rem] uppercase text-left">
                       {testimonial.firstName}

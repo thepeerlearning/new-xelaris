@@ -25,7 +25,7 @@ export default function Home() {
       <WhatParentSays/>
       <SuccessStories/>
       </div>
-      <Preview/>
+  
     </Layout>
   );
 }
