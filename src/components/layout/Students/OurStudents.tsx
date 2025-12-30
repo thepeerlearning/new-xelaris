@@ -1,38 +1,48 @@
-'use client';
-import Button from "@/components/ui/Button";
-import { StudentProjectCard } from "@/components/ui/cards/StudentProjectCard";
-import { ArrowRight } from "lucide-react";
-import { useState } from "react";
+"use client"
+import Button from "@/components/ui/Button"
+import { StudentProjectCard } from "@/components/ui/cards/StudentProjectCard"
+import { ArrowRight } from "lucide-react"
+import { useState } from "react"
 
 // Project images
 const projectImages: Record<string, string> = {
-  "Mortgage Calculator": "https://res.cloudinary.com/seunsanyaa/image/upload/v1767043085/internal-wrap_vdynwu.png",
-  "OneKind Donation": "https://res.cloudinary.com/seunsanyaa/image/upload/v1767043210/233bc5665235ca3ff1c33e4bde6f4c27aeb88300_h5pgqi.png",
-  "Weather App": "https://res.cloudinary.com/seunsanyaa/image/upload/v1767043854/7576c96a8c5bd2fc66cf4e4c19981c302c7631b1_dzsmna.jpg",
-  "Word Scramble": "https://res.cloudinary.com/seunsanyaa/image/upload/v1767043499/aab13495ca22ef0b4b978eaf1ad97d9a8eb63a87_rtj342.png",
-  "Animal Quiz": "https://res.cloudinary.com/seunsanyaa/image/upload/v1767043920/internal-wrap_1_f9hg6n.png",
-  "Virus Rules": "https://res.cloudinary.com/seunsanyaa/image/upload/v1767043862/8d5c660ca7f8127a647bb1d4305703f5205e20d2_kxp35u.png",
-};
+  "Mortgage Calculator":
+    "https://res.cloudinary.com/seunsanyaa/image/upload/v1767043085/internal-wrap_vdynwu.png",
+  "OneKind Donation":
+    "https://res.cloudinary.com/seunsanyaa/image/upload/v1767043210/233bc5665235ca3ff1c33e4bde6f4c27aeb88300_h5pgqi.png",
+  "Weather App":
+    "https://res.cloudinary.com/seunsanyaa/image/upload/v1767043854/7576c96a8c5bd2fc66cf4e4c19981c302c7631b1_dzsmna.jpg",
+  "Word Scramble":
+    "https://res.cloudinary.com/seunsanyaa/image/upload/v1767043499/aab13495ca22ef0b4b978eaf1ad97d9a8eb63a87_rtj342.png",
+  "Animal Quiz":
+    "https://res.cloudinary.com/seunsanyaa/image/upload/v1767043920/internal-wrap_1_f9hg6n.png",
+  "Virus Rules":
+    "https://res.cloudinary.com/seunsanyaa/image/upload/v1767043862/8d5c660ca7f8127a647bb1d4305703f5205e20d2_kxp35u.png",
+}
 
 export function OurStudents() {
-  const [selectedProject, setSelectedProject] = useState("Mortgage Calculator");
+  const [selectedProject, setSelectedProject] = useState("Mortgage Calculator")
 
   // Project data - in a real app, this would come from an API
-  const projectData: Record<string, {
-    title: string;
-    description: string;
-    features: string[];
-    builtBy: string;
-    builtWith: string;
-    url?: string;
-  }> = {
+  const projectData: Record<
+    string,
+    {
+      title: string
+      description: string
+      features: string[]
+      builtBy: string
+      builtWith: string
+      url?: string
+    }
+  > = {
     "Mortgage Calculator": {
       title: "Mortgage Calculator",
-      description: "I design this mortgage calculator project for practicing working with forms, client-side validation, and updating the Document Object Model (DOM).",
+      description:
+        "I design this mortgage calculator project for practicing working with forms, client-side validation, and updating the Document Object Model (DOM).",
       features: [
         "Enter mortgage details and view the monthly and total repayment amounts after submitting the form",
         "See validation messages when required fields are incomplete",
-        "Complete the entire form using only their keyboard"
+        "Complete the entire form using only their keyboard",
       ],
       builtBy: "Chloé, 14 yrs old",
       builtWith: "HTML, CSS, JavaScript",
@@ -40,12 +50,13 @@ export function OurStudents() {
     },
     "OneKind Donation": {
       title: "OneKind Donation",
-      description: "I designed this donation platform to simulate a real-world experience as my project. The goal was to build a fully functional interface that handles form interactions, validates user inputs, and integrates with a payment system. Working on this helped me practice a lot of important front-end skills: Form Handling & State Management, Client-Side Validation, and Payment Flow Logic.",
+      description:
+        "I designed this donation platform to simulate a real-world experience as my project. The goal was to build a fully functional interface that handles form interactions, validates user inputs, and integrates with a payment system. Working on this helped me practice a lot of important front-end skills: Form Handling & State Management, Client-Side Validation, and Payment Flow Logic.",
       features: [
         "Pick a donation type and choose a preset amount or type their own",
         "Decide between monthly or one-time donations",
         "See validation messages when a field is missing",
-        "Clean transition to checkout page with payment-ready data"
+        "Clean transition to checkout page with payment-ready data",
       ],
       builtBy: "Maya, 15 years old",
       builtWith: "React",
@@ -53,23 +64,25 @@ export function OurStudents() {
     },
     "Weather App": {
       title: "Weather App",
-      description: "I built this weather app to practice building something real people could actually use. The goal was to create a working interface that shows weather information and updates based on what the user searches for. Working on this helped me practice getting data from APIs and managing state.",
+      description:
+        "I built this weather app to practice building something real people could actually use. The goal was to create a working interface that shows weather information and updates based on what the user searches for. Working on this helped me practice getting data from APIs and managing state.",
       features: [
         "Search for any city and see current temperature and conditions",
         "View weather forecasts for the next few days",
-        "Save favorite locations for quick access"
+        "Save favorite locations for quick access",
       ],
       builtBy: "Zach, 12 years old",
       builtWith: "HTML, CSS, JavaScript",
     },
     "Word Scramble": {
       title: "Word Scramble",
-      description: "I built this word game to practice JavaScript and figure out how to handle user input. You basically unscramble letters to find the hidden word before you run out of tries. Building this taught me how to manage multiple pieces of game state, handle user input smoothly, and create win/lose logic—all skills I can use for more complex projects.",
+      description:
+        "I built this word game to practice JavaScript and figure out how to handle user input. You basically unscramble letters to find the hidden word before you run out of tries. Building this taught me how to manage multiple pieces of game state, handle user input smoothly, and create win/lose logic—all skills I can use for more complex projects.",
       features: [
         "Auto-moving inputs: cursor automatically jumps to the next box",
         "Game tracks tries and wrong letters, resets after 6 mistakes",
         "Word scrambling function with random word selection",
-        "Two reset options: new word or retry same word"
+        "Two reset options: new word or retry same word",
       ],
       builtBy: "William, 14 years old",
       builtWith: "HTML, CSS, JavaScript",
@@ -77,12 +90,13 @@ export function OurStudents() {
     },
     "Animal Quiz": {
       title: "Animal Quiz",
-      description: "I made this game because I love animals, and I want other kids to learn about animals too. When you start, you can pick an animal group, like dogs, cats, birds, or fish. Each one has different questions. Every question shows four pictures, and you have to pick the right animal. I hope you have fun playing my game!",
+      description:
+        "I made this game because I love animals, and I want other kids to learn about animals too. When you start, you can pick an animal group, like dogs, cats, birds, or fish. Each one has different questions. Every question shows four pictures, and you have to pick the right animal. I hope you have fun playing my game!",
       features: [
         "Pick an animal group (dogs, cats, birds, or fish)",
         "Answer questions by selecting from four picture options",
         "Try again if you get a question wrong",
-        "See your score at the end and play again to beat it"
+        "See your score at the end and play again to beat it",
       ],
       builtBy: "Alexa, 13 years old",
       builtWith: "HTML, CSS, JavaScript",
@@ -90,18 +104,19 @@ export function OurStudents() {
     },
     "Virus Rules": {
       title: "Virus Rules",
-      description: "The problem I am solving is that many people get sick without knowing the cause of their symptoms, like wheezing. VirusRule helps users learn about viruses, vaccines, and virologists through fun games and quizzes. I created VirusRule because I believe learning about health should be enjoyable and easy. When we make learning fun, we can help people take control of their health.",
+      description:
+        "The problem I am solving is that many people get sick without knowing the cause of their symptoms, like wheezing. VirusRule helps users learn about viruses, vaccines, and virologists through fun games and quizzes. I created VirusRule because I believe learning about health should be enjoyable and easy. When we make learning fun, we can help people take control of their health.",
       features: [
         "Learn about viruses, vaccines, and virologists",
         "Play fun games and quizzes about health topics",
         "Understand symptoms and their causes",
-        "Make learning about health enjoyable and easy"
+        "Make learning about health enjoyable and easy",
       ],
       builtBy: "Zoja, 12 years old",
       builtWith: "HTML, CSS, JavaScript",
       url: "https://www.virusrule.com/",
     },
-  };
+  }
 
   const projectList = [
     "Mortgage Calculator",
@@ -109,15 +124,17 @@ export function OurStudents() {
     "Word Scramble",
     "Animal Quiz",
     "Weather App",
-    "Virus Rules"
-  ];
+    "Virus Rules",
+  ]
 
-  const currentProject = projectData[selectedProject] || projectData["Mortgage Calculator"];
-  const currentProjectImage = projectImages[selectedProject] || projectImages["Mortgage Calculator"];
+  const currentProject =
+    projectData[selectedProject] || projectData["Mortgage Calculator"]
+  const currentProjectImage =
+    projectImages[selectedProject] || projectImages["Mortgage Calculator"]
 
   return (
     <div className="flex flex-col items-center w-full py-12 sm:py-16 md:py-0 l lg:pb-16 xl:pb-24 2xl:pb-32 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-30 2xl:px-20">
-      <div className="flex flex-col lg:flex-row items-center lg:items-start w-full max-w-7xl xl:max-w-[90rem] 2xl:max-w-[1440px] gap-4 sm:gap-5 md:gap-6 lg:gap-0">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start w-full max-w-7xl xl:max-w-[90rem] 2xl:max-w-360 gap-4 sm:gap-5 md:gap-6 lg:gap-0">
         {/* Header Section - Mobile Only */}
         <div className="flex lg:hidden flex-col gap-2 sm:gap-3 md:gap-4 items-center w-full">
           {/* Title */}
@@ -130,7 +147,11 @@ export function OurStudents() {
           {/* Description */}
           <div className="flex flex-col items-center justify-center w-full">
             <p className="font-medium leading-relaxed text-[#b0b0b0] text-base sm:text-lg md:text-lg text-center tracking-tight">
-              Every project here is built and owned by our students, guided by expert mentors and developed at a professional level. <br className="hidden md:block" />Each new student creates something equally ambitious, driven entirely by their own passion.
+              Every project here is built and owned by our students, guided by
+              expert mentors and developed at a professional level.{" "}
+              <br className="hidden md:block" />
+              Each new student creates something equally ambitious, driven
+              entirely by their own passion.
             </p>
           </div>
         </div>
@@ -232,11 +253,14 @@ export function OurStudents() {
             <h2 className="font-medium text-white text-3xl sm:text-3xl md:text-5xl lg:text-6xl leading-tight text-center tracking-tight xl:tracking-tight 2xl:tracking-tighter whitespace-nowrap">
               See What Our Students Have Built
             </h2>
-            
+
             {/* Description */}
             <p className="font-medium text-[#b0b0b0] text-sm xl:text-base 2xl:text-lg leading-relaxed text-center tracking-tight mt-4 xl:mt-5 2xl:mt-6 max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
-              Every project here is built and owned by our students, guided by expert mentors and developed at a professional level. 
-              <br className="hidden md:block" />Each new student creates something equally ambitious, driven entirely by their own passion.
+              Every project here is built and owned by our students, guided by
+              expert mentors and developed at a professional level.
+              <br className="hidden md:block" />
+              Each new student creates something equally ambitious, driven
+              entirely by their own passion.
             </p>
           </div>
 
@@ -265,7 +289,7 @@ export function OurStudents() {
 
               {/* Book A Trial Class Button */}
               <div className="bg-[#1a1e24] flex flex-col items-center justify-end p-2 xl:p-3 2xl:p-4 rounded-xl xl:rounded-2xl 2xl:rounded-3xl shadow-[0_0.25rem_1.25rem_0_rgba(0,0,0,0.25)] border border-black w-full mt-auto">
-                <a 
+                <a
                   href="https://cal.com/xelaris/trial-class"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -292,7 +316,11 @@ export function OurStudents() {
                 builtWith={currentProject.builtWith}
                 onViewProject={() => {
                   if (currentProject.url) {
-                    window.open(currentProject.url, '_blank', 'noopener,noreferrer');
+                    window.open(
+                      currentProject.url,
+                      "_blank",
+                      "noopener,noreferrer"
+                    )
                   }
                 }}
               />
@@ -311,13 +339,12 @@ export function OurStudents() {
             builtWith={currentProject.builtWith}
             onViewProject={() => {
               if (currentProject.url) {
-                window.open(currentProject.url, '_blank', 'noopener,noreferrer');
+                window.open(currentProject.url, "_blank", "noopener,noreferrer")
               }
             }}
           />
         </div>
       </div>
     </div>
-  );
+  )
 }
-
