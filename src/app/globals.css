@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+/* .body{
+  background: linear-gradient(0deg, #0A0A0A 0%, #0A0A0A 100%), #000;
+} */
+
+.body {
+  /* background: radial-gradient(ellipse at top, #1a1f3a 0%, #0a0e17 50%); */
+  /* background: linear-gradient(0deg, #1D1F24 0%, #1D1F24 100%), #FFF; */
+  /* background-attachment: fixed; */
+  padding: 0 0.2rem;
+}
+/* Add noise texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+    background-image: url('https://res.cloudinary.com/seunsanyaa/image/upload/v1766821097/noise_2_uv6ajz.png');
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: -1;
+}
