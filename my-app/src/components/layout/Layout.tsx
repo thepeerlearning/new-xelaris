@@ -4,6 +4,7 @@ import { Nav } from "../nav";
 
 import { Footer } from "./Footer/Footer";
 import { Faq } from "./Home/Faq";
+import { Preview } from "./video/Preview";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
    
@@ -19,7 +20,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Faq/>
         <Footer onContact={() => {window.location.href = '/contact'} }/>
 
- 
+        <Preview/>
        
     </div>
   );
