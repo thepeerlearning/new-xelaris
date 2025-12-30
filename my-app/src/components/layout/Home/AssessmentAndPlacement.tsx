@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export function AssessmentAndPlacement() {
   return (
-    <div className="flex flex-col gap-6 items-center justify-center w-full px-4 py-16 lg:px-20 lg:py-0 lg:pt-[23px] lg:pb-40">
+    <div className="flex flex-col gap-6 items-center justify-center w-full px-4 py-16 lg:px-20 lg:py-0 lg:pt-20 lg:pb-40">
       <div className="flex flex-col gap-4 items-center w-full max-w-[1200px] lg:flex-row lg:gap-4 lg:items-start lg:justify-center">
         {/* Mobile Header Section */}
         <div className="flex flex-col gap-4 items-center w-full lg:hidden">
