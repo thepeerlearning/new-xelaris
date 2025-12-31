@@ -17,8 +17,6 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
-const nameRegex = /^[a-zA-Z\s'-]+$/ // keep your existing rule
-
 const personalInfoSchema = z.object({
   childFullName: z
     .string()

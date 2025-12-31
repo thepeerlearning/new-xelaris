@@ -24,9 +24,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { PlusIcon, X } from "lucide-react"
 import { useState } from "react"
 import {
+  Controller,
   useFieldArray,
   useForm,
-  Controller,
   type ControllerFieldState,
   type ControllerRenderProps,
 } from "react-hook-form"

@@ -16,7 +16,7 @@ interface CalloutProps {
   SecondActionButton?: string | React.ReactNode
   ThirdActionButton?: string | React.ReactNode
   FourthActionButton?: string | React.ReactNode
-  icon?: React.ReactNode // Lucide React icons are preferred, but React.ReactNode allows flexibility
+  icon?: React.ReactNode
 }
 
 function Callout({
