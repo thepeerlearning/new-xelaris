@@ -21,12 +21,6 @@ export function SignupForm() {
     cardNumber: '',
     expiry: '',
     cvv: '',
-    country: 'United States',
-    addressLine1: '',
-    addressLine2: '',
-    city: '',
-    zip: '',
-    state: '',
   });
   const [emailError, setEmailError] = useState(false);
 
@@ -270,7 +264,7 @@ export function SignupForm() {
                       onChange={(e) => setFormData({ ...formData, timezone: e.target.value })}
                       className="flex-1 bg-transparent font-normal text-[17px] sm:text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none"
                     />
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transform rotate-180 sm:w-6 sm:h-6 shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transform  sm:w-6 sm:h-6 shrink-0">
                       <path d="M6 9L12 15L18 9" stroke="#091717" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
@@ -289,7 +283,7 @@ export function SignupForm() {
                       onChange={(e) => setFormData({ ...formData, childAge: e.target.value })}
                       className="flex-1 bg-transparent font-normal text-[17px] sm:text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none"
                     />
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transform rotate-180 sm:w-6 sm:h-6 shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transform  sm:w-6 sm:h-6 shrink-0">
                       <path d="M6 9L12 15L18 9" stroke="#091717" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
@@ -308,7 +302,7 @@ export function SignupForm() {
                       onChange={(e) => setFormData({ ...formData, classDuration: e.target.value })}
                       className="flex-1 bg-transparent font-normal text-[17px] sm:text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none"
                     />
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transform rotate-180 sm:w-6 sm:h-6 shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transform  sm:w-6 sm:h-6 shrink-0">
                       <path d="M6 9L12 15L18 9" stroke="#091717" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
@@ -327,7 +321,7 @@ export function SignupForm() {
                       onChange={(e) => setFormData({ ...formData, availableDay: e.target.value })}
                       className="flex-1 bg-transparent font-normal text-[17px] sm:text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none"
                     />
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transform rotate-180 sm:w-6 sm:h-6 shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transform  sm:w-6 sm:h-6 shrink-0">
                       <path d="M6 9L12 15L18 9" stroke="#091717" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
@@ -346,7 +340,7 @@ export function SignupForm() {
                       onChange={(e) => setFormData({ ...formData, availableTime: e.target.value })}
                       className="flex-1 bg-transparent font-normal text-[17px] sm:text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none"
                     />
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transform rotate-180 sm:w-6 sm:h-6 shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transform  sm:w-6 sm:h-6 shrink-0">
                       <path d="M6 9L12 15L18 9" stroke="#091717" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
@@ -429,63 +423,6 @@ export function SignupForm() {
                         <rect x="18" y="9" width="3" height="2" fill="#091717"/>
                       </svg>
                     </div>
-                  </div>
-                </div>
-
-                {/* Billing Address */}
-                <div className="flex flex-col gap-3 mt-2">
-                  <label className="font-normal text-sm sm:text-[15.63px] text-[#091717] leading-[20px] sm:leading-[22px]">
-                    Billing Address
-                  </label>
-
-                  {/* Country Dropdown */}
-                  <div className="bg-white border border-[#e0e0e0] rounded-tl-md rounded-tr-md shadow-sm px-3 py-2 flex items-center justify-between">
-                    <span className="font-normal text-[15px] sm:text-[17px] text-[#091717]">{formData.country}</span>
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="shrink-0">
-                      <path d="M3 4.5L6 7.5L9 4.5" stroke="#091717" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
-                  </div>
-
-                  {/* Address Lines */}
-                  <input
-                    type="text"
-                    placeholder="Address line 1"
-                    value={formData.addressLine1}
-                    onChange={(e) => setFormData({ ...formData, addressLine1: e.target.value })}
-                    className="bg-white border border-[#e0e0e0] shadow-sm px-3 py-2 font-normal text-[17px] sm:text-[18px] text-[#091717] placeholder:text-[rgba(9,23,23,0.5)] focus:outline-none focus:border-[#091717]"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Address line 2"
-                    value={formData.addressLine2}
-                    onChange={(e) => setFormData({ ...formData, addressLine2: e.target.value })}
-                    className="bg-white border border-[#e0e0e0] shadow-sm px-3 py-2 font-normal text-[17px] sm:text-[18px] text-[#091717] placeholder:text-[rgba(9,23,23,0.5)] focus:outline-none focus:border-[#091717]"
-                  />
-
-                  {/* City and Zip */}
-                  <div className="flex flex-col sm:flex-row gap-px">
-                    <input
-                      type="text"
-                      placeholder="City"
-                      value={formData.city}
-                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                      className="bg-white border border-[#e0e0e0] shadow-sm px-3 py-2 font-normal text-sm sm:text-[15px] text-[#091717] placeholder:text-[rgba(9,23,23,0.5)] focus:outline-none focus:border-[#091717] flex-1"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Zip"
-                      value={formData.zip}
-                      onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
-                      className="bg-white border border-[#e0e0e0] shadow-sm px-3 py-2 font-normal text-sm sm:text-[15px] text-[#091717] placeholder:text-[rgba(9,23,23,0.5)] focus:outline-none focus:border-[#091717] flex-1"
-                    />
-                  </div>
-
-                  {/* State Dropdown */}
-                  <div className="bg-white border border-[#e0e0e0] rounded-bl-md rounded-br-md shadow-sm px-3 py-2 flex items-center justify-between">
-                    <span className="font-normal text-[15px] sm:text-[17px] text-[#091717]">{formData.state || 'State'}</span>
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="shrink-0">
-                      <path d="M3 4.5L6 7.5L9 4.5" stroke="#091717" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
                   </div>
                 </div>
 
