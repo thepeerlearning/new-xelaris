@@ -439,7 +439,7 @@ export function SignupForm() {
                             height="20"
                             viewBox="0 0 24 24"
                             fill="none"
-                            className="transform rotate-180 sm:w-6 sm:h-6 shrink-0"
+                            className="transform   sm:w-6 sm:h-6 shrink-0"
                           >
                             <path
                               d="M6 9L12 15L18 9"
@@ -535,7 +535,7 @@ export function SignupForm() {
                           height="20"
                           viewBox="0 0 24 24"
                           fill="none"
-                          className="transform rotate-180 sm:w-6 sm:h-6 shrink-0"
+                          className="transform   sm:w-6 sm:h-6 shrink-0"
                         >
                           <path
                             d="M6 9L12 15L18 9"
@@ -577,7 +577,7 @@ export function SignupForm() {
                           height="20"
                           viewBox="0 0 24 24"
                           fill="none"
-                          className="transform rotate-180 sm:w-6 sm:h-6 shrink-0"
+                          className="transform   sm:w-6 sm:h-6 shrink-0"
                         >
                           <path
                             d="M6 9L12 15L18 9"
@@ -621,7 +621,7 @@ export function SignupForm() {
                           height="20"
                           viewBox="0 0 24 24"
                           fill="none"
-                          className="transform rotate-180 sm:w-6 sm:h-6 shrink-0"
+                          className="transform   sm:w-6 sm:h-6 shrink-0"
                         >
                           <path
                             d="M6 9L12 15L18 9"
@@ -664,7 +664,7 @@ export function SignupForm() {
                           height="20"
                           viewBox="0 0 24 24"
                           fill="none"
-                          className="transform rotate-180 sm:w-6 sm:h-6 shrink-0"
+                          className="transform   sm:w-6 sm:h-6 shrink-0"
                         >
                           <path
                             d="M6 9L12 15L18 9"
@@ -700,7 +700,7 @@ export function SignupForm() {
                           height="20"
                           viewBox="0 0 24 24"
                           fill="none"
-                          className="transform rotate-180 sm:w-6 sm:h-6 shrink-0"
+                          className="transform   sm:w-6 sm:h-6 shrink-0"
                         >
                           <path
                             d="M6 9L12 15L18 9"
@@ -743,7 +743,7 @@ export function SignupForm() {
                               height="20"
                               viewBox="0 0 24 24"
                               fill="none"
-                              className="transform rotate-180 sm:w-6 sm:h-6 shrink-0"
+                              className="transform   sm:w-6 sm:h-6 shrink-0"
                             >
                               <path
                                 d="M6 9L12 15L18 9"
@@ -778,7 +778,7 @@ export function SignupForm() {
                               height="20"
                               viewBox="0 0 24 24"
                               fill="none"
-                              className="transform rotate-180 sm:w-6 sm:h-6 shrink-0"
+                              className="transform   sm:w-6 sm:h-6 shrink-0"
                             >
                               <path
                                 d="M6 9L12 15L18 9"
