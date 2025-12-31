@@ -16,7 +16,7 @@ We are educators, designers, and engineers who believe in pushing boundaries to 
 
 - **Next.js** (App Router)
 - **Tailwind CSS** (utility-first styling)
-- **TypeScript** (recommended / supported)
+- **TypeScript**
 
 ---
 
