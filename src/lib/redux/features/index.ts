@@ -1,5 +1,0 @@
-export * from "./signup/signupSlice"
-export * from "./admin/adminSlice"
-export * from "./parent/parentSlice"
-export * from "./student/studentSlice"
-export * from "./profile/profileSlice"
