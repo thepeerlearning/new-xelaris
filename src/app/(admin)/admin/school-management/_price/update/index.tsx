@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -23,10 +24,11 @@ import { cn } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { isEmpty } from "lodash"
 import { Edit } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import {
   Controller,
   useForm,
+  useWatch,
   type ControllerFieldState,
   type ControllerRenderProps,
 } from "react-hook-form"
@@ -68,6 +70,7 @@ interface CurrencyInputProps {
   placeholder?: string
   disabled?: boolean
 }
+
 const CurrencyInput = ({
   field,
   fieldState,
@@ -75,6 +78,9 @@ const CurrencyInput = ({
   disabled,
 }: CurrencyInputProps) => {
   const [isEditing, setIsEditing] = useState(false)
+
+  // destructure BEFORE JSX to avoid react-hooks/refs lint errors
+  const { name, ref, value, onChange, onBlur } = field
 
   const toCurrency = (v: string | number | undefined): string => {
     const n = Number.parseFloat(String(v ?? ""))
@@ -84,6 +90,16 @@ const CurrencyInput = ({
           currency: "USD",
         }).format(n)
       : ""
+  }
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsEditing(false)
+    onChange(sanitizeAmount(e.target.value))
+    onBlur()
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(sanitizeAmount(e.target.value))
   }
 
   return (
@@ -96,16 +112,12 @@ const CurrencyInput = ({
         disabled={disabled}
         className={cn("pl-6", fieldState.error && "border-red-500")}
         placeholder={placeholder}
-        name={field.name}
-        ref={field.ref}
+        name={name}
+        ref={ref}
         onFocus={() => setIsEditing(true)}
-        onBlur={(e) => {
-          setIsEditing(false)
-          field.onChange(sanitizeAmount(e.target.value))
-          field.onBlur()
-        }}
-        onChange={(e) => field.onChange(sanitizeAmount(e.target.value))}
-        value={isEditing ? field.value ?? "" : toCurrency(field.value)}
+        onBlur={handleBlur}
+        onChange={handleChange}
+        value={isEditing ? value ?? "" : toCurrency(value)}
         inputMode="decimal"
         aria-invalid={!!fieldState.error}
       />
@@ -113,7 +125,28 @@ const CurrencyInput = ({
   )
 }
 
-export default function UpdateSchoolPrice({ row, rowPrice }: any) {
+// replace `any` props with minimal safe typing
+type PriceRow = {
+  id: string
+  amount?: string | number | null
+  duration?: string | number | null
+  idx?: string | number | null
+}
+
+type SchoolRow = {
+  id: string
+  name?: string | null
+}
+
+type UpdateSchoolPriceProps = {
+  row: SchoolRow
+  rowPrice: PriceRow
+}
+
+export default function UpdateSchoolPrice({
+  row,
+  rowPrice,
+}: UpdateSchoolPriceProps) {
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
   const dispatch = useAppDispatch()
@@ -131,12 +164,16 @@ export default function UpdateSchoolPrice({ row, rowPrice }: any) {
 
   // prefill from rowPrice
   useEffect(() => {
-    form.setValue("oldPrice", sanitizeAmount(rowPrice?.amount ?? ""))
+    form.setValue("oldPrice", sanitizeAmount(String(rowPrice?.amount ?? "")))
     form.setValue("duration", String(rowPrice?.duration ?? ""))
     form.setValue("classPerWeek", String(rowPrice?.idx ?? "1"))
-  }, [form, rowPrice, row])
+  }, [form, rowPrice?.amount, rowPrice?.duration, rowPrice?.idx])
 
-  const priceIdOrOld = form.watch("oldPrice")
+  // ✅ useWatch instead of form.watch (removes incompatible-library warning)
+  const priceIdOrOld = useWatch({ control: form.control, name: "oldPrice" })
+
+  const canRenderFields = useMemo(() => !isEmpty(priceIdOrOld), [priceIdOrOld])
+
   const onSubmit = (data: FormValues) => {
     const inputData = {
       id: rowPrice.id,
@@ -159,8 +196,6 @@ export default function UpdateSchoolPrice({ row, rowPrice }: any) {
       .catch(() => setLoading(false))
   }
 
-  const handleClose = () => setOpen(false)
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -168,10 +203,12 @@ export default function UpdateSchoolPrice({ row, rowPrice }: any) {
           <Edit />
         </Button>
       </DialogTrigger>
+
       <DialogContent className="w-full flex flex-col gap-5">
         <DialogTitle className="text-center">
           Update {row?.name} Price
         </DialogTitle>
+
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6">
             {/* Old price (read-only) */}
@@ -194,7 +231,7 @@ export default function UpdateSchoolPrice({ row, rowPrice }: any) {
               )}
             />
 
-            {!isEmpty(priceIdOrOld) ? (
+            {canRenderFields ? (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
@@ -265,16 +302,18 @@ export default function UpdateSchoolPrice({ row, rowPrice }: any) {
             ) : null}
 
             <Separator className="my-4" />
+
             <div className="flex gap-2">
               <Button
                 type="button"
                 variant="outline"
-                onClick={handleClose}
+                onClick={() => setOpen(false)}
                 className="w-1/2"
                 disabled={loading}
               >
                 Cancel
               </Button>
+
               <Button type="submit" className="w-1/2" disabled={loading}>
                 {loading ? "Saving..." : "Save"}
               </Button>

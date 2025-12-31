@@ -1,4 +1,6 @@
 "use client"
+
+import * as React from "react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -45,8 +47,8 @@ const validationSchema = z.object({
     .min(1, "Price is required")
     .regex(/^\d+(\.\d{1,2})?$/, "Invalid price format (e.g., 10.00 or 10)"),
 })
-type FormValues = z.infer<typeof validationSchema> // all strings
 
+type FormValues = z.infer<typeof validationSchema> // all strings
 type RawFormValues = z.input<typeof validationSchema> // what RHF stores pre-transform
 
 // --------- Currency Input ----------
@@ -62,6 +64,8 @@ const CurrencyInput = ({
   placeholder,
 }: CurrencyInputProps) => {
   const [isEditing, setIsEditing] = useState(false)
+
+  const { name, ref, value, onChange, onBlur } = field
 
   const toCurrency = (v: string | number | undefined): string => {
     const n = Number.parseFloat(String(v ?? ""))
@@ -80,13 +84,13 @@ const CurrencyInput = ({
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    field.onChange(sanitize(e.target.value)) // keep raw numeric string
+    onChange(sanitize(e.target.value)) // keep raw numeric string
   }
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setIsEditing(false)
-    field.onChange(sanitize(e.target.value))
-    field.onBlur()
+    onChange(sanitize(e.target.value))
+    onBlur()
   }
 
   return (
@@ -98,12 +102,12 @@ const CurrencyInput = ({
         type="text"
         className={cn("pl-6", fieldState.error && "border-red-500")}
         placeholder={placeholder}
-        name={field.name}
-        ref={field.ref}
+        name={name}
+        ref={ref}
         onFocus={() => setIsEditing(true)}
         onBlur={handleBlur}
         onChange={handleChange}
-        value={isEditing ? field.value ?? "" : toCurrency(field.value)}
+        value={isEditing ? value ?? "" : toCurrency(value)}
         inputMode="decimal"
         aria-invalid={!!fieldState.error}
       />
@@ -148,17 +152,6 @@ export default function AddSchool({ id }: { id: string }) {
       })
       .catch(() => setLoading(false))
   }
-  // const onSubmit = (data: ParsedFormValues) => {
-  //   const inputData = {
-  //     school_id: id,
-  //     // if your API expects string, stringify; otherwise send numbers directly
-  //     idx: String(data.classPerWeek),
-  //     default_currency: "USD",
-  //     amount: data.price, // number is safer; stringify only if backend requires
-  //     duration: String(data.duration),
-  //   }
-
-  // }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

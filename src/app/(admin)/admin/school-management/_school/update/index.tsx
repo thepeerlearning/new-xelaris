@@ -22,7 +22,7 @@ import { useAppDispatch } from "@/lib/redux/hooks"
 import { cn } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Edit } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -33,7 +33,13 @@ const validationSchema = z.object({
 
 type FormValues = z.infer<typeof validationSchema>
 
-export default function AddSchool({ row }: any) {
+type SchoolRow = {
+  id: string
+  name: string
+  age_range: string
+}
+
+export default function UpdateSchool({ row }: { row: SchoolRow }) {
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
   const dispatch = useAppDispatch()
@@ -41,19 +47,28 @@ export default function AddSchool({ row }: any) {
   const form = useForm<FormValues>({
     resolver: zodResolver(validationSchema),
     defaultValues: {
-      title: row.name,
-      age: row.age_range,
+      title: "",
+      age: "",
     },
+    mode: "onBlur",
   })
 
-  const onSubmit = (data: FormValues) => {
-    const { age, title } = data
+  // ✅ keep form in sync when `row` changes, and when dialog opens
+  useEffect(() => {
+    if (!row) return
+    form.reset({
+      title: row.name ?? "",
+      age: row.age_range ?? "",
+    })
+  }, [row, form])
 
+  const onSubmit = (data: FormValues) => {
     const inputData = {
       id: row.id,
-      name: title,
-      age_range: age,
+      name: data.title,
+      age_range: data.age,
     }
+
     setLoading(true)
     dispatch(updateSchool({ inputData }))
       .unwrap()
@@ -62,25 +77,36 @@ export default function AddSchool({ row }: any) {
         setOpen(false)
         dispatch(getSchools())
       })
-      .catch(() => {
-        setLoading(false)
-      })
+      .catch(() => setLoading(false))
   }
 
   const handleClose = () => setOpen(false)
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(v) => {
+        setOpen(v)
+        // optional: reset when opening so it's always fresh
+        if (v) {
+          form.reset({
+            title: row?.name ?? "",
+            age: row?.age_range ?? "",
+          })
+        }
+      }}
+    >
       <DialogTrigger asChild>
         <Button className="w-[200px] h-[45px] py-[12px] gap-2 capitalize font-bold font-grotesk text-[14px]/[24px] md:text-[16px]/[20px] text-black rounded-md bg-white hover:scale-[1.008] transition duration-300 ease-in-out justify-start">
           <Edit /> Update school
         </Button>
       </DialogTrigger>
+
       <DialogContent className="w-full flex flex-col gap-5">
         <DialogTitle>Update School</DialogTitle>
+
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6">
-            {/* Title & Age */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField
                 control={form.control}
@@ -118,9 +144,9 @@ export default function AddSchool({ row }: any) {
                 )}
               />
             </div>
+
             <Separator className="my-4" />
 
-            {/* Submit / Cancel */}
             <div className="flex gap-2">
               <Button
                 type="button"

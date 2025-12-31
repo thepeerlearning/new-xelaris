@@ -22,7 +22,7 @@ import { useAppDispatch } from "@/lib/redux/hooks"
 import { cn } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { PlusIcon, X } from "lucide-react"
-import { useState } from "react"
+import { useState, type ChangeEvent, type FocusEvent } from "react"
 import {
   Controller,
   useFieldArray,
@@ -79,12 +79,26 @@ interface CurrencyInputProps {
   fieldState: ControllerFieldState
   placeholder?: string
 }
+
 const CurrencyInput = ({
   field,
   fieldState,
   placeholder,
 }: CurrencyInputProps) => {
   const [isEditing, setIsEditing] = useState(false)
+
+  const { name, ref, value, onChange, onBlur } = field
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange(sanitizeAmount(e.target.value))
+  }
+
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    setIsEditing(false)
+    onChange(sanitizeAmount(e.target.value))
+    onBlur()
+  }
+
   return (
     <div className="relative">
       <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
@@ -94,16 +108,12 @@ const CurrencyInput = ({
         type="text"
         className={cn("pl-6", fieldState.error && "border-red-500")}
         placeholder={placeholder}
-        name={field.name}
-        ref={field.ref}
+        name={name}
+        ref={ref}
         onFocus={() => setIsEditing(true)}
-        onBlur={(e) => {
-          setIsEditing(false)
-          field.onChange(sanitizeAmount(e.target.value))
-          field.onBlur()
-        }}
-        onChange={(e) => field.onChange(sanitizeAmount(e.target.value))}
-        value={isEditing ? field.value ?? "" : toCurrency(field.value)}
+        onBlur={handleBlur}
+        onChange={handleChange}
+        value={isEditing ? value ?? "" : toCurrency(value)}
         inputMode="decimal"
         aria-invalid={!!fieldState.error}
       />
@@ -164,8 +174,10 @@ export default function AddSchool() {
       <DialogTrigger asChild>
         <Button className="w-[180px] capitalize">Register new school</Button>
       </DialogTrigger>
+
       <DialogContent className="w-full flex flex-col gap-5">
         <DialogTitle>Register new school</DialogTitle>
+
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6">
             {/* Title & Age */}
@@ -208,9 +220,9 @@ export default function AddSchool() {
             </div>
 
             {/* Dynamic Price Fields */}
-            {fields.map((field, index) => (
+            {fields.map((f, index) => (
               <div
-                key={field.id}
+                key={f.id}
                 className="border p-4 rounded-lg grid gap-4 relative"
               >
                 {fields.length > 1 && (
@@ -248,7 +260,6 @@ export default function AddSchool() {
                   )}
                 />
 
-                {/* UPDATED PRICE FIELD */}
                 <Controller
                   control={form.control}
                   name={`prices.${index}.price`}
