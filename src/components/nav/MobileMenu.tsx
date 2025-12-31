@@ -1,16 +1,14 @@
-'use client';
-import { ChevronRight, Home, X } from 'lucide-react';
-import Link from 'next/link';
-
-
+"use client"
+import { ChevronRight, Home, X } from "lucide-react"
+import Link from "next/link"
 
 interface MobileMenuProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen: boolean
+  onClose: () => void
 }
 
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 bg-white z-50 flex flex-col justify-between overflow-y-auto">
@@ -25,8 +23,6 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       {/* Top Section */}
       <div className="flex flex-col items-start px-3 py-0 w-full">
         <div className="flex flex-col items-start w-full max-w-[351px] mx-auto pt-4">
-      
-
           {/* Go to Home Page */}
           <Link
             href="/"
@@ -79,7 +75,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <div className="border-b border-[#bababa] flex flex-col items-center justify-center pb-px pt-0 px-0 w-full">
             <div className="bg-white w-full">
               <Link
-                href="/auth/login"
+                href="/login"
                 onClick={onClose}
                 className="flex items-center justify-between p-[15px] w-full"
               >
@@ -114,7 +110,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
             {/* Sign Up Button */}
             <Link
-              href="/auth/signup"
+              href="/signup"
               onClick={onClose}
               className="border border-[#161a20] flex items-center justify-center overflow-hidden px-12 py-2.5 rounded-2xl w-full"
             >
@@ -126,6 +122,5 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }
-

@@ -1,17 +1,23 @@
-'use client';
-import Button from "@/components/ui/Button";
-import { ArrowRight } from "lucide-react";
-import Image from 'next/image';
+"use client"
+import Button from "@/components/ui/buttons/Button"
+import { ArrowRight } from "lucide-react"
+import Image from "next/image"
 
 interface AIProgramHeroProps {
-  title: string;
-  description: string;
-  prerequisites: string;
-  image: string;
-  onApply: () => void;
+  title: string
+  description: string
+  prerequisites: string
+  image: string
+  onApply: () => void
 }
 
-export function AIProgramHero({ title, description, prerequisites, image, onApply }: AIProgramHeroProps) {
+export function AIProgramHero({
+  title,
+  description,
+  prerequisites,
+  image,
+  onApply,
+}: AIProgramHeroProps) {
   return (
     <div className="flex flex-col items-start w-full md:pt-10">
       {/* Mobile Layout */}
@@ -32,7 +38,9 @@ export function AIProgramHero({ title, description, prerequisites, image, onAppl
                       <div className="flex flex-col items-start justify-center relative shrink-0">
                         <div className="flex flex-col items-start relative shrink-0 w-full">
                           <div className="flex flex-col font-normal justify-center leading-4 relative shrink-0 text-sm text-white tracking-tight whitespace-nowrap">
-                            <p className="leading-[18px]">High School Students</p>
+                            <p className="leading-[18px]">
+                              High School Students
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -58,7 +66,7 @@ export function AIProgramHero({ title, description, prerequisites, image, onAppl
                   </div>
                 </div>
               </div>
-              
+
               {/* Description */}
               <div className="flex flex-col font-normal items-start leading-5 w-full mt-2">
                 <p className="leading-5 text-gray-400 text-lg mb-4">
@@ -73,8 +81,8 @@ export function AIProgramHero({ title, description, prerequisites, image, onAppl
 
             {/* CTA Button */}
             <div className="flex flex-col gap-3 items-center justify-center w-[70%]">
-              <Button 
-                type="colored" 
+              <Button
+                type="colored"
                 onClick={onApply}
                 className="w-full sm:w-auto !rounded-xl"
               >
@@ -86,11 +94,11 @@ export function AIProgramHero({ title, description, prerequisites, image, onAppl
             <div className="flex flex-col items-start overflow-hidden w-full">
               <div className="flex flex-col items-center justify-center overflow-hidden rounded-lg w-full">
                 <div className="h-auto w-full bg-slate-800 rounded-lg aspect-video flex items-center justify-center relative">
-                  <Image 
-                    src={image} 
-                    alt={title} 
-                    fill 
-                    className="object-cover object-center rounded-lg" 
+                  <Image
+                    src={image}
+                    alt={title}
+                    fill
+                    className="object-cover object-center rounded-lg"
                   />
                 </div>
               </div>
@@ -109,12 +117,13 @@ export function AIProgramHero({ title, description, prerequisites, image, onAppl
               <h1 className="font-medium text-white text-[60px] leading-[66px] tracking-[-2px] mb-4">
                 {title}
               </h1>
-              
+
               {/* Badges */}
-              <div 
+              <div
                 className="flex gap-[9.99px] h-[37px] items-center justify-center overflow-hidden p-1 rounded-[10px] border border-[rgba(255,255,255,0.2)]"
                 style={{
-                  backgroundImage: 'linear-gradient(118.13deg, rgba(255, 255, 255, 0.1) 74%, rgba(255, 255, 255, 0.02) 100%)'
+                  backgroundImage:
+                    "linear-gradient(118.13deg, rgba(255, 255, 255, 0.1) 74%, rgba(255, 255, 255, 0.02) 100%)",
                 }}
               >
                 <div className="bg-[rgba(136,136,136,0.5)] flex h-[27px] items-center justify-center overflow-hidden px-[6px] py-[2px] rounded-[6px]">
@@ -138,9 +147,7 @@ export function AIProgramHero({ title, description, prerequisites, image, onAppl
             {/* Description, Prerequisites and CTA */}
             <div className="flex flex-col items-start w-[515px]">
               <div className="flex flex-col font-normal items-start text-[#b0b0b0] text-[18px] leading-[25px] tracking-[-0.4px] w-full mb-4">
-                <p className="whitespace-pre-wrap">
-                  {description}
-                </p>
+                <p className="whitespace-pre-wrap">{description}</p>
               </div>
 
               {/* Prerequisites */}
@@ -150,12 +157,12 @@ export function AIProgramHero({ title, description, prerequisites, image, onAppl
                   <span> {prerequisites}</span>
                 </p>
               </div>
-              
+
               {/* CTA Button */}
               <div className="flex items-center h-[52px]">
                 <div className="bg-[rgba(34,98,225,0)] flex items-center justify-center p-[2px] rounded-[18px]">
                   <div className="bg-[#1e1f2d] flex items-center justify-center p-[2px] rounded-[18px]">
-                    <button 
+                    <button
                       onClick={onApply}
                       className="bg-[#eaee13] flex items-center justify-center overflow-hidden px-12 py-3 rounded-[16px] shadow-[inset_2px_2px_8px_0px_rgba(255,255,255,0.25),inset_-2px_-2px_7px_0px_rgba(0,0,0,0.15)]"
                     >
@@ -173,8 +180,8 @@ export function AIProgramHero({ title, description, prerequisites, image, onAppl
           <div className="w-[592px]">
             <div className="bg-[#15161d] flex flex-col items-center p-1 rounded-[20px] border border-[#2b2b2b]">
               <div className="h-[506.301px] relative rounded-[16px] w-full overflow-hidden">
-                <Image 
-                  src={image} 
+                <Image
+                  src={image}
                   alt={title}
                   fill
                   className="object-cover object-center rounded-[16px]"
@@ -186,6 +193,5 @@ export function AIProgramHero({ title, description, prerequisites, image, onAppl
         </div>
       </div>
     </div>
-  );
+  )
 }
-

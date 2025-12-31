@@ -1,23 +1,23 @@
-'use client';
-import Button from '@/components/ui/Button';
-import { ArrowRight, Check } from 'lucide-react';
-import Image from 'next/image';
+"use client"
+import Button from "@/components/ui/buttons/Button"
+import { ArrowRight, Check } from "lucide-react"
+import Image from "next/image"
 
 interface CurriculumPhase {
-  phase: string;
-  items: string[];
+  phase: string
+  items: string[]
 }
 
 interface ProgramDetailSectionProps {
-  image: string;
-  title: string;
-  ageRange: string;
-  description: string;
-  duration: string;
-  curriculum: CurriculumPhase[];
-  projects: string[];
-  prerequisites: string;
-  onBookTrial?: () => void;
+  image: string
+  title: string
+  ageRange: string
+  description: string
+  duration: string
+  curriculum: CurriculumPhase[]
+  projects: string[]
+  prerequisites: string
+  onBookTrial?: () => void
 }
 
 export function ProgramDetailSection({
@@ -80,7 +80,7 @@ export function ProgramDetailSection({
           <h2 className="font-bold text-white text-2xl tracking-[-0.075rem]">
             What They&apos;ll Learn
           </h2>
-          
+
           <div className="flex flex-col gap-6 w-full">
             {curriculum.map((phase, index) => (
               <div key={index} className="flex flex-col gap-3 items-start">
@@ -107,7 +107,7 @@ export function ProgramDetailSection({
           <h2 className="font-bold text-white text-2xl tracking-[-0.075rem]">
             What They&apos;ll Build
           </h2>
-          
+
           <div className="flex flex-col gap-2 w-full">
             {projects.map((project, index) => (
               <div key={index} className="flex items-start gap-2">
@@ -122,21 +122,17 @@ export function ProgramDetailSection({
 
         {/* CTA Button */}
         <div className="flex items-center justify-center w-full pt-4">
-          <a 
+          <a
             href="https://cal.com/xelaris/trial-class"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button
-              type="colored"
-              className="w-full sm:w-auto"
-            >
+            <Button type="colored" className="w-full sm:w-auto">
               Book A Trial Class <ArrowRight className="w-4 h-4" />
             </Button>
           </a>
         </div>
       </div>
     </div>
-  );
+  )
 }
-

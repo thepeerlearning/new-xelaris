@@ -1,5 +1,5 @@
-'use client';
-import Link from 'next/link';
+"use client"
+import Link from "next/link"
 
 export function AssessmentAndPlacement() {
   return (
@@ -10,14 +10,16 @@ export function AssessmentAndPlacement() {
           {/* Heading */}
           <div className="flex flex-col items-start max-w-[318px] h-[70px] overflow-hidden">
             <h2 className="font-medium text-white text-[2rem] leading-[2.2rem] text-center tracking-[-2px] w-full">
-              Assessment<br />& Placement
+              Assessment
+              <br />& Placement
             </h2>
           </div>
 
           {/* Description */}
           <div className="flex flex-col items-center justify-center max-w-[311px]">
             <p className="font-medium text-[#b0b0b0] text-lg leading-[1.4rem] text-center tracking-[-0.4px]">
-              We want every student in the right program from day one. Here&apos;s how we make sure of that:
+              We want every student in the right program from day one.
+              Here&apos;s how we make sure of that:
             </p>
           </div>
         </div>
@@ -28,12 +30,14 @@ export function AssessmentAndPlacement() {
           <div className="h-[203px] overflow-hidden relative w-full">
             <div className="flex flex-col items-start max-w-[600px] min-w-[554px]">
               <h2 className="font-medium text-white text-[60px] leading-[66px] tracking-[-2px] whitespace-nowrap">
-                Assessment<br />& Placement
+                Assessment
+                <br />& Placement
               </h2>
             </div>
             <div className="absolute top-[157.88px] left-0 w-[472px] flex flex-col items-start justify-center">
               <p className="font-medium text-[#b0b0b0] text-lg leading-[1.4rem] tracking-[-0.4px] w-full">
-                We want every student in the right program from day one. Here&apos;s how we make sure of that:
+                We want every student in the right program from day one.
+                Here&apos;s how we make sure of that:
               </p>
             </div>
           </div>
@@ -41,7 +45,10 @@ export function AssessmentAndPlacement() {
           {/* CTA Button */}
           <div className="flex items-center h-[49px]">
             <div className="flex flex-col items-start p-[2px] rounded-[18px] relative">
-              <Link href="/auth/signup" className="bg-[#fefc00] flex items-center justify-center overflow-hidden px-12 py-[10px] rounded-[16px]">
+              <Link
+                href="/signup"
+                className="bg-[#fefc00] flex items-center justify-center overflow-hidden px-12 py-[10px] rounded-[16px]"
+              >
                 <span className="font-medium text-[#161a20] text-lg text-center tracking-[-0.4px] leading-[24px] whitespace-nowrap">
                   Book A Trial Class →
                 </span>
@@ -59,7 +66,8 @@ export function AssessmentAndPlacement() {
             <div
               className="relative rounded-[2rem] lg:rounded-[2.5rem] p-px"
               style={{
-                backgroundImage: 'linear-gradient(159.12deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%)'
+                backgroundImage:
+                  "linear-gradient(159.12deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%)",
               }}
             >
               {/* Outer card background */}
@@ -68,7 +76,8 @@ export function AssessmentAndPlacement() {
                 <div
                   className="relative rounded-[1.5rem] lg:rounded-[2rem] p-px"
                   style={{
-                    backgroundImage: 'linear-gradient(161.13deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 62%)'
+                    backgroundImage:
+                      "linear-gradient(161.13deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 62%)",
                   }}
                 >
                   {/* Inner card with gradient background */}
@@ -92,7 +101,8 @@ export function AssessmentAndPlacement() {
                       {/* Description */}
                       <div className="flex flex-col items-start opacity-70 w-full">
                         <p className="font-medium text-white text-sm lg:text-base leading-[1.1375rem] lg:leading-[1.375rem] tracking-[-0.4px] w-full">
-                          No commitment, Just an honest conversation about where your child is and where they should start.
+                          No commitment, Just an honest conversation about where
+                          your child is and where they should start.
                         </p>
                       </div>
                     </div>
@@ -111,7 +121,8 @@ export function AssessmentAndPlacement() {
             <div
               className="relative rounded-[2rem] lg:rounded-[2.5rem] p-px"
               style={{
-                backgroundImage: 'linear-gradient(158.49deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%)'
+                backgroundImage:
+                  "linear-gradient(158.49deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%)",
               }}
             >
               {/* Outer card background */}
@@ -120,7 +131,8 @@ export function AssessmentAndPlacement() {
                 <div
                   className="relative rounded-[1.5rem] lg:rounded-[2rem] p-px"
                   style={{
-                    backgroundImage: 'linear-gradient(160.65deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 62%)'
+                    backgroundImage:
+                      "linear-gradient(160.65deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 62%)",
                   }}
                 >
                   {/* Inner card with gradient background */}
@@ -147,10 +159,20 @@ export function AssessmentAndPlacement() {
                           Our mentor will:
                         </p>
                         <ul className="list-disc font-medium text-white text-sm lg:text-base leading-[1.1375rem] lg:leading-[1.375rem] tracking-[-0.4px] w-full pl-[21px] lg:pl-[24px] mt-0">
-                          <li className="mb-0">Review any projects or code they&apos;ve built</li>
-                          <li className="mb-0">Give them a simple technical challenge to work through</li>
-                          <li className="mb-0">Ask questions to understand how they think and problem-solve</li>
-                          <li className="mb-0">Discuss their interests and goals</li>
+                          <li className="mb-0">
+                            Review any projects or code they&apos;ve built
+                          </li>
+                          <li className="mb-0">
+                            Give them a simple technical challenge to work
+                            through
+                          </li>
+                          <li className="mb-0">
+                            Ask questions to understand how they think and
+                            problem-solve
+                          </li>
+                          <li className="mb-0">
+                            Discuss their interests and goals
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -169,7 +191,8 @@ export function AssessmentAndPlacement() {
             <div
               className="relative rounded-[2rem] lg:rounded-[2.5rem] p-px"
               style={{
-                backgroundImage: 'linear-gradient(159.12deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%)'
+                backgroundImage:
+                  "linear-gradient(159.12deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%)",
               }}
             >
               {/* Outer card background */}
@@ -178,7 +201,8 @@ export function AssessmentAndPlacement() {
                 <div
                   className="relative rounded-[1.5rem] lg:rounded-[2rem] p-px"
                   style={{
-                    backgroundImage: 'linear-gradient(161.13deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 62%)'
+                    backgroundImage:
+                      "linear-gradient(161.13deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 62%)",
                   }}
                 >
                   {/* Inner card with gradient background */}
@@ -202,7 +226,9 @@ export function AssessmentAndPlacement() {
                       {/* Description */}
                       <div className="flex flex-col items-start opacity-70 w-full">
                         <p className="font-medium text-white text-sm lg:text-base leading-[1.1375rem] lg:leading-[1.375rem] tracking-[-0.4px] w-full">
-                          Right there on the call. We&apos;ll tell you exactly which program is the best fit and why. If you decide to move forward, your child starts in the program.
+                          Right there on the call. We&apos;ll tell you exactly
+                          which program is the best fit and why. If you decide
+                          to move forward, your child starts in the program.
                         </p>
                       </div>
                     </div>
@@ -217,5 +243,5 @@ export function AssessmentAndPlacement() {
         </div>
       </div>
     </div>
-  );
+  )
 }

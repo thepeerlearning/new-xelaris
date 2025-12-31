@@ -1,13 +1,13 @@
-'use client';
-import { Menu } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
-import { Logo } from "../assets/Logos";
-import Button from "../ui/Button";
-import { MobileMenu } from "./MobileMenu";
+"use client"
+import { Menu } from "lucide-react"
+import Link from "next/link"
+import { useState } from "react"
+import { Logo } from "../assets/Logos"
+import Button from "../ui/buttons/Button"
+import { MobileMenu } from "./MobileMenu"
 
 export function Nav() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
     <>
@@ -53,13 +53,13 @@ export function Nav() {
 
         {/* Right Section - Desktop */}
         <div className="hidden lg:flex items-center gap-8">
-          <Link 
-            href="/auth/login"
+          <Link
+            href="/login"
             className="font-normal text-[#181c22] text-lg leading-[19.2px] px-1.5 py-1 rounded hover:bg-white/50 transition-colors"
           >
             Login
           </Link>
-          <Link 
+          <Link
             href="https://cal.com/xelaris/trial-class"
             target="_blank"
             rel="noopener noreferrer"
@@ -70,18 +70,18 @@ export function Nav() {
         </div>
 
         {/* Mobile Menu Button - Hidden on desktop */}
-        <Button 
+        <Button
           className="lg:hidden !bg-[#1a1e24] text-white !p-3 !rounded-xl"
           onClick={() => setIsMobileMenuOpen(true)}
         >
-          <Menu/>
+          <Menu />
         </Button>
       </nav>
 
-      <MobileMenu 
-        isOpen={isMobileMenuOpen} 
-        onClose={() => setIsMobileMenuOpen(false)} 
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
       />
     </>
-  );
+  )
 }

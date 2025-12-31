@@ -1,28 +1,30 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'www.figma.com',
-        pathname: '/api/mcp/asset/**',
+        protocol: "https",
+        hostname: "www.figma.com",
+        pathname: "/api/mcp/asset/**",
       },
       {
-        protocol:'https',
-        hostname:'res.cloudinary.com',
-        pathname:'/**',
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
       },
       {
-        protocol:'https',
-        hostname:'www.cloudinary.com',
-        pathname:'/**',
-      }
-
-
+        protocol: "https",
+        hostname: "www.cloudinary.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.facebook.com",
+        pathname: "/**",
+      },
     ],
-    
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

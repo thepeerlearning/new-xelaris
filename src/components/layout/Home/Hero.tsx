@@ -5,7 +5,7 @@ import { Shopify } from "@/components/assets/Shopify"
 import { SpringBoard } from "@/components/assets/SpringBoard"
 import { Synthesis } from "@/components/assets/Synthesis"
 import { Tesla } from "@/components/assets/Tesla"
-import Button from "@/components/ui/Button"
+import Button from "@/components/ui/buttons/Button"
 import { ArrowRight } from "lucide-react"
 
 export function Hero() {
@@ -31,7 +31,7 @@ export function Hero() {
 
       {/* CTA Buttons */}
       <div className="flex flex-col lg:flex-row gap-3 lg:gap-[14.35px] items-center justify-center mt-10 w-full px-4 max-w-[300px] lg:max-w-none mx-auto">
-        <a href="/auth/signup" target="_blank" rel="noopener noreferrer">
+        <a href="/signup" target="_blank" rel="noopener noreferrer">
           <Button
             type="colored"
             className="w-full lg:w-50 flex items-center gap-1 lg:!px-12 lg:!py-3"
@@ -39,7 +39,7 @@ export function Hero() {
             Enroll Now <ArrowRight className="w-3 h-3 lg:w-4 lg:h-4" />
           </Button>
         </a>
-        {/* <Link href="/auth/signup">
+        {/* <Link href="/signup">
           <Button 
             type="uncolored" 
             className="w-full lg:w-50 lg:!px-12 lg:!py-[10px]"

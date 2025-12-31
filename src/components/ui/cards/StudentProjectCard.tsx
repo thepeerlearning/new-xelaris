@@ -1,15 +1,15 @@
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
-import Button from "../Button";
+import { ArrowRight } from "lucide-react"
+import Image from "next/image"
+import Button from "../buttons/Button"
 
 interface StudentProjectCardProps {
-  projectImage: string;
-  title: string;
-  description: string;
-  features: string[];
-  builtBy: string;
-  builtWith: string;
-  onViewProject?: () => void;
+  projectImage: string
+  title: string
+  description: string
+  features: string[]
+  builtBy: string
+  builtWith: string
+  onViewProject?: () => void
 }
 
 export const StudentProjectCard = ({
@@ -29,7 +29,8 @@ export const StudentProjectCard = ({
         <div
           className="relative rounded-[2.125rem]"
           style={{
-            backgroundImage: "linear-gradient(108deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 56%)"
+            backgroundImage:
+              "linear-gradient(108deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 56%)",
           }}
         >
           {/* Outer card background */}
@@ -71,7 +72,10 @@ export const StudentProjectCard = ({
                     </p>
                     <ul className="list-disc ms-[1.125rem] mt-0 space-y-0">
                       {features.map((feature, index) => (
-                        <li key={index} className="font-normal text-white text-sm leading-[1.03rem] mb-0">
+                        <li
+                          key={index}
+                          className="font-normal text-white text-sm leading-[1.03rem] mb-0"
+                        >
                           {feature}
                         </li>
                       ))}
@@ -105,6 +109,5 @@ export const StudentProjectCard = ({
         </div>
       </div>
     </div>
-  );
-};
-
+  )
+}

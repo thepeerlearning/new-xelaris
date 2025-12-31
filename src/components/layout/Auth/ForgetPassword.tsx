@@ -1,53 +1,62 @@
-'use client';
-import Button from '@/components/ui/Button';
-import { ArrowLeft, ArrowRight, CheckCircle, Eye, EyeOff, Key, Lock, Mail } from 'lucide-react';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+"use client"
+import Button from "@/components/ui/buttons/Button"
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle,
+  Eye,
+  EyeOff,
+  Key,
+  Lock,
+  Mail,
+} from "lucide-react"
+import Link from "next/link"
+import { useSearchParams } from "next/navigation"
+import { useState } from "react"
 
 export function ForgetPassword() {
-  const searchParams = useSearchParams();
-  const token = searchParams.get('token');
-  
+  const searchParams = useSearchParams()
+  const token = searchParams.get("token")
+
   // If token is present in URL, start at step 3 (set new password)
-  const [step, setStep] = useState(token ? 3 : 1);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [emailError, setEmailError] = useState(false);
+  const [step, setStep] = useState(token ? 3 : 1)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [emailError, setEmailError] = useState(false)
 
   const handleEmailSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.includes('@') || !email.includes('.')) {
-      setEmailError(true);
-      return;
+    e.preventDefault()
+    if (!email.includes("@") || !email.includes(".")) {
+      setEmailError(true)
+      return
     }
-    setEmailError(false);
-    setStep(2);
-  };
+    setEmailError(false)
+    setStep(2)
+  }
 
   const handleResendEmail = () => {
     // Handle resend email logic
-    console.log('Resending email to:', email);
-  };
+    console.log("Resending email to:", email)
+  }
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (password !== confirmPassword) {
-      return;
+      return
     }
     // Validate password requirements
     if (password.length < 8 || !/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      return;
+      return
     }
-    setStep(4);
-  };
+    setStep(4)
+  }
 
   const handleOpenEmailApp = () => {
-    window.location.href = `mailto:${email}`;
-  };
+    window.location.href = `mailto:${email}`
+  }
 
   return (
     <div className="bg-white min-h-screen w-full flex items-center justify-center px-4 py-12 lg:py-24">
@@ -71,7 +80,10 @@ export function ForgetPassword() {
             </div>
 
             {/* Form */}
-            <form onSubmit={handleEmailSubmit} className="flex flex-col gap-5 w-full">
+            <form
+              onSubmit={handleEmailSubmit}
+              className="flex flex-col gap-5 w-full"
+            >
               {/* Email Input */}
               <div className="flex flex-col gap-1.5">
                 <label className="font-medium text-[#344054] text-sm leading-5">
@@ -81,12 +93,12 @@ export function ForgetPassword() {
                   type="email"
                   value={email}
                   onChange={(e) => {
-                    setEmail(e.target.value);
-                    setEmailError(false);
+                    setEmail(e.target.value)
+                    setEmailError(false)
                   }}
                   placeholder="Enter your email"
                   className={`bg-white border ${
-                    emailError ? 'border-[#e23353]' : 'border-[#d0d5dd]'
+                    emailError ? "border-[#e23353]" : "border-[#d0d5dd]"
                   } rounded-lg px-3.5 py-2.5 w-full font-normal text-lg text-[#091717] placeholder:text-[#667085] focus:outline-none focus:border-[#091717] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]`}
                 />
               </div>
@@ -97,13 +109,14 @@ export function ForgetPassword() {
                 htmlType="submit"
                 className="!rounded-[18px] !px-6 !py-3 w-full"
               >
-                <span className="font-bold">Reset password</span> <ArrowRight className="w-4 h-4" />
+                <span className="font-bold">Reset password</span>{" "}
+                <ArrowRight className="w-4 h-4" />
               </Button>
             </form>
 
             {/* Back to Login Link */}
             <Link
-              href="/auth/login"
+              href="/login"
               className="flex items-center gap-1.5 text-[#475467] text-sm font-bold hover:text-[#091717] transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -126,7 +139,7 @@ export function ForgetPassword() {
                 Check your email
               </h1>
               <p className="font-medium text-[#475467] text-lg leading-6">
-                We sent a password reset link to{' '}
+                We sent a password reset link to{" "}
                 <span className="font-bold">{email}</span>
               </p>
             </div>
@@ -137,12 +150,15 @@ export function ForgetPassword() {
               onClick={handleOpenEmailApp}
               className="!rounded-[18px] !px-6 !py-3 w-full"
             >
-              <span className="font-bold">Open email app</span> <ArrowRight className="w-4 h-4" />
+              <span className="font-bold">Open email app</span>{" "}
+              <ArrowRight className="w-4 h-4" />
             </Button>
 
             {/* Resend Email */}
             <div className="flex items-center gap-1 text-sm">
-              <p className="font-normal text-[#475467]">Didn&apos;t receive the email?</p>
+              <p className="font-normal text-[#475467]">
+                Didn&apos;t receive the email?
+              </p>
               <button
                 onClick={handleResendEmail}
                 className="font-bold text-[#161a20] hover:underline"
@@ -153,7 +169,7 @@ export function ForgetPassword() {
 
             {/* Back to Login Link */}
             <Link
-              href="/auth/login"
+              href="/login"
               className="flex items-center gap-1.5 text-[#475467] text-sm font-bold hover:text-[#091717] transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -176,12 +192,16 @@ export function ForgetPassword() {
                 Set new password
               </h1>
               <p className="font-normal text-[#475467] text-lg leading-6">
-                Your new password must be different to previously used passwords.
+                Your new password must be different to previously used
+                passwords.
               </p>
             </div>
 
             {/* Form */}
-            <form onSubmit={handlePasswordSubmit} className="flex flex-col gap-5 w-full">
+            <form
+              onSubmit={handlePasswordSubmit}
+              className="flex flex-col gap-5 w-full"
+            >
               {/* Password Input */}
               <div className="flex flex-col gap-1.5">
                 <label className="font-medium text-[#344054] text-sm leading-5">
@@ -189,7 +209,7 @@ export function ForgetPassword() {
                 </label>
                 <div className="relative">
                   <input
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
@@ -216,7 +236,7 @@ export function ForgetPassword() {
                 </label>
                 <div className="relative">
                   <input
-                    type={showConfirmPassword ? 'text' : 'password'}
+                    type={showConfirmPassword ? "text" : "password"}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="••••••••"
@@ -239,12 +259,25 @@ export function ForgetPassword() {
               {/* Password Requirements */}
               <div className="flex flex-col gap-3">
                 <div className="flex items-start gap-2">
-                  <div className={`rounded-full w-5 h-5 flex items-center justify-center ${
-                    password.length >= 8 ? 'bg-[#12b76a]' : 'bg-[#d0d5dd]'
-                  }`}>
+                  <div
+                    className={`rounded-full w-5 h-5 flex items-center justify-center ${
+                      password.length >= 8 ? "bg-[#12b76a]" : "bg-[#d0d5dd]"
+                    }`}
+                  >
                     {password.length >= 8 && (
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                        <path d="M10 3L4.5 8.5L2 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                      >
+                        <path
+                          d="M10 3L4.5 8.5L2 6"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     )}
                   </div>
@@ -253,12 +286,27 @@ export function ForgetPassword() {
                   </p>
                 </div>
                 <div className="flex items-start gap-2">
-                  <div className={`rounded-full w-5 h-5 flex items-center justify-center ${
-                    /[!@#$%^&*(),.?":{}|<>]/.test(password) ? 'bg-[#12b76a]' : 'bg-[#d0d5dd]'
-                  }`}>
+                  <div
+                    className={`rounded-full w-5 h-5 flex items-center justify-center ${
+                      /[!@#$%^&*(),.?":{}|<>]/.test(password)
+                        ? "bg-[#12b76a]"
+                        : "bg-[#d0d5dd]"
+                    }`}
+                  >
                     {/[!@#$%^&*(),.?":{}|<>]/.test(password) && (
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                        <path d="M10 3L4.5 8.5L2 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                      >
+                        <path
+                          d="M10 3L4.5 8.5L2 6"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     )}
                   </div>
@@ -274,13 +322,14 @@ export function ForgetPassword() {
                 htmlType="submit"
                 className="!rounded-[16px] !px-6 !py-3 w-full"
               >
-                <span className="font-bold">Reset password</span> <ArrowRight className="w-4 h-4" />
+                <span className="font-bold">Reset password</span>{" "}
+                <ArrowRight className="w-4 h-4" />
               </Button>
             </form>
 
             {/* Back to Login Link */}
             <Link
-              href="/auth/login"
+              href="/login"
               className="flex items-center gap-1.5 text-[#475467] text-sm font-bold hover:text-[#091717] transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -308,17 +357,18 @@ export function ForgetPassword() {
             </div>
 
             {/* Log In Button */}
-            <Link href="/auth/login" className="w-full">
+            <Link href="/login" className="w-full">
               <Button
                 type="colored"
                 className="!rounded-[16px] !px-6 !py-3 w-full"
               >
-                <span className="font-bold">Log in</span> <ArrowRight className="w-4 h-4" />
+                <span className="font-bold">Log in</span>{" "}
+                <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
           </>
         )}
       </div>
     </div>
-  );
+  )
 }

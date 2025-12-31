@@ -1,32 +1,43 @@
-'use client';
-import Button from '@/components/ui/Button';
-import { ArrowRight, Eye, EyeOff } from 'lucide-react';
-import Link from 'next/link';
-import { useState } from 'react';
+"use client"
+import Button from "@/components/ui/buttons/Button"
+import { parentlogin } from "@/lib/redux/features/auth/authSlice"
+import { useAppDispatch } from "@/lib/redux/hooks"
+import { ArrowRight, Eye, EyeOff } from "lucide-react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 export function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [emailError, setEmailError] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [emailError, setEmailError] = useState(false)
+  const dispatch = useAppDispatch()
+  const router = useRouter()
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    setEmailError(false);
-  };
+    setEmail(e.target.value)
+    setEmailError(false)
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Validate email
-    if (!email.includes('@') || !email.includes('.')) {
-      setEmailError(true);
-      return;
+    e.preventDefault()
+    const inputData = {
+      email: email?.trim(),
+      password: password,
     }
-    
-    // Handle login
-    console.log('Login:', { email, password });
-  };
+    setLoading(true)
+    dispatch(parentlogin({ inputData }))
+      .unwrap()
+      .then(() => {
+        setLoading(false)
+        router.push("/parent/dashboard")
+      })
+      .catch((err: any) => {
+        setLoading(false)
+      })
+  }
 
   return (
     <div className="bg-white h-full w-full rounded-none lg:rounded-[28px] overflow-auto">
@@ -53,20 +64,33 @@ export function LoginForm() {
                   onChange={handleEmailChange}
                   placeholder="alexaplex@gmail.co"
                   className={`bg-white border ${
-                    emailError ? 'border-[#e23353]' : 'border-[#d9dce1]'
+                    emailError ? "border-[#e23353]" : "border-[#d9dce1]"
                   } rounded-[4px] h-10 px-4 w-full font-normal text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none ${
-                    emailError ? 'focus:border-[#e23353]' : 'focus:border-[#091717]'
+                    emailError
+                      ? "focus:border-[#e23353]"
+                      : "focus:border-[#091717]"
                   }`}
                 />
               </div>
-              
+
               {/* Error Message */}
               {emailError && (
                 <div className="flex items-center gap-[5px] mt-1">
                   <div className="w-4 h-4 flex items-center justify-center">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="8" cy="8" r="7.5" stroke="#e23353"/>
-                      <path d="M8 4V8M8 12H8.01" stroke="#e23353" strokeWidth="1.5" strokeLinecap="round"/>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle cx="8" cy="8" r="7.5" stroke="#e23353" />
+                      <path
+                        d="M8 4V8M8 12H8.01"
+                        stroke="#e23353"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                      />
                     </svg>
                   </div>
                   <p className="font-normal text-[#e23353] text-[17px] leading-[22px]">
@@ -83,7 +107,7 @@ export function LoginForm() {
               </label>
               <div className="relative">
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••••"
@@ -105,8 +129,8 @@ export function LoginForm() {
 
             {/* Forgot Password Link */}
             <div className="flex items-start">
-              <Link 
-                href="/auth/forget-password" 
+              <Link
+                href="/auth/forget-password"
                 className="font-normal text-[#1d1f24] text-[17px] leading-[24px] underline"
               >
                 Forgot password?
@@ -116,11 +140,13 @@ export function LoginForm() {
             {/* Login Button */}
             <div className="flex items-center justify-center mt-6">
               <Button
+                disabled={loading}
                 type="colored"
                 htmlType="submit"
                 className="!rounded-[18px] !px-6 !py-3 w-full max-w-[414px]"
               >
-                Login <ArrowRight className="w-4 h-4" />
+                {loading ? `Logging in...` : `Login`}{" "}
+                {loading ? null : <ArrowRight className="w-4 h-4" />}
               </Button>
             </div>
           </form>
@@ -128,10 +154,10 @@ export function LoginForm() {
           {/* Sign Up Link */}
           <div className="flex items-center justify-center gap-1 mt-6">
             <p className="font-normal text-[17px] text-[#1b1b1b] leading-[24px] text-center">
-              Don&apos;t have an account?{' '}
+              Don&apos;t have an account?{" "}
             </p>
-            <Link 
-              href="/auth/signup" 
+            <Link
+              href="/signup"
               className="font-normal text-[#1d1f24] text-[14px] leading-[24px] underline"
             >
               Register here
@@ -163,20 +189,33 @@ export function LoginForm() {
                   onChange={handleEmailChange}
                   placeholder="alexaplex@gmail.co"
                   className={`bg-white border ${
-                    emailError ? 'border-[#e23353]' : 'border-[#d9dce1]'
+                    emailError ? "border-[#e23353]" : "border-[#d9dce1]"
                   } rounded-[4px] h-10 px-4 w-full font-normal text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none ${
-                    emailError ? 'focus:border-[#e23353]' : 'focus:border-[#091717]'
+                    emailError
+                      ? "focus:border-[#e23353]"
+                      : "focus:border-[#091717]"
                   }`}
                 />
               </div>
-              
+
               {/* Error Message */}
               {emailError && (
                 <div className="flex items-center gap-[5px] mt-1">
                   <div className="w-4 h-4 flex items-center justify-center">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="8" cy="8" r="7.5" stroke="#e23353"/>
-                      <path d="M8 4V8M8 12H8.01" stroke="#e23353" strokeWidth="1.5" strokeLinecap="round"/>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle cx="8" cy="8" r="7.5" stroke="#e23353" />
+                      <path
+                        d="M8 4V8M8 12H8.01"
+                        stroke="#e23353"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                      />
                     </svg>
                   </div>
                   <p className="font-normal text-[#e23353] text-[17px] leading-[22px]">
@@ -193,7 +232,7 @@ export function LoginForm() {
               </label>
               <div className="relative">
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••••"
@@ -215,8 +254,8 @@ export function LoginForm() {
 
             {/* Forgot Password Link */}
             <div className="flex items-start">
-              <Link 
-                href="/auth/forget-password" 
+              <Link
+                href="/auth/forget-password"
                 className="font-normal text-[#1d1f24] text-[17px] leading-[24px] underline"
               >
                 Forgot password?
@@ -238,10 +277,10 @@ export function LoginForm() {
           {/* Sign Up Link */}
           <div className="flex items-center justify-center gap-1 mt-8">
             <p className="font-normal text-[17px] text-[#1b1b1b] leading-[24px] text-center">
-              Need to create an account?{' '}
+              Need to create an account?{" "}
             </p>
-            <Link 
-              href="/auth/signup" 
+            <Link
+              href="/signup"
               className="font-normal text-[#1d1f24] text-[14px] leading-[24px] underline"
             >
               Sign up
@@ -250,5 +289,5 @@ export function LoginForm() {
         </div>
       </div>
     </div>
-  );
+  )
 }

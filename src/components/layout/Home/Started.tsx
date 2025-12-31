@@ -1,5 +1,5 @@
 "use client"
-import Button from "@/components/ui/Button"
+import Button from "@/components/ui/buttons/Button"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 
@@ -63,7 +63,7 @@ export function Started() {
                   Book A Trial Class <ArrowRight className="w-4 h-4" />
                 </Button>
               </a>
-              {/* <Link href="/auth/signup">
+              {/* <Link href="/signup">
                   <Button 
                     type="uncolored" 
                     className="w-full lg:w-auto !rounded-xl lg:!px-12 lg:!py-[10px]"
