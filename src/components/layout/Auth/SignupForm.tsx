@@ -208,7 +208,7 @@ export function SignupForm() {
                   <div className="flex flex-col gap-1">
                     <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
                       <span className="font-normal text-[17px] sm:text-[18px] text-[#bdc1ca]">United States</span>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transform rotate-180 sm:w-6 sm:h-6 shrink-0">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="sm:w-6 sm:h-6 shrink-0">
                         <path d="M6 9L12 15L18 9" stroke="#091717" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
