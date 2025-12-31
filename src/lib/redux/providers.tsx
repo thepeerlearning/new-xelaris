@@ -8,7 +8,11 @@ import { PersistGate } from "redux-persist/integration/react"
 
 import { makeStore } from "./store"
 
-export function ReduxProvider({ children }: { children: React.ReactNode }) {
+export default function StoreProvider({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   const store = React.useMemo(() => makeStore(), [])
   const persistor: Persistor = React.useMemo(() => persistStore(store), [store])
 
