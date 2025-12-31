@@ -2,12 +2,13 @@
 import Button from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
 import Image from 'next/image';
+import Link from "next/link";
 
 const desktopImage = 'https://res.cloudinary.com/seunsanyaa/image/upload/v1766823260/main_ggu6py.png';
 
 export function Started(){
     return (
-      <div className="flex flex-col items-center w-full px-4 md:px-20 py-5 pt-20 lg:pt-[8rem] max-w-[1440px] mx-auto">
+      <div className="flex flex-col items-center w-full px-4 md:px-20 py-5 pt-20 lg:pt-[8rem] max-w-[1440px] mx-auto my-6 lg:my-0">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-4 items-center justify-center w-full max-w-[1200px]">
           {/* Left Text Stack */}
           <div className="flex flex-col items-start w-full lg:flex-1 lg:h-[720px] lg:relative">
@@ -33,7 +34,7 @@ export function Started(){
                   </p>
                   <p className="leading-5 text-[#b0b0b0] text-lg lg:text-[18px] lg:leading-[22px]">
                     All programs are developed and taught exclusively by a{' '}
-                    <span className="text-[#fefc00] underline">team</span>
+                     <Link href="/about" className="text-[#fefc00] underline" >team</Link>
                     {' '}of professional engineers.
                   </p>
                 </div>

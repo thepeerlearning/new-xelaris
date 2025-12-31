@@ -497,7 +497,7 @@ export function Footer({ onContact, onSocialClick }: FooterProps) {
             <div className="flex flex-col font-bold justify-center text-[#b0b0b0]">
               <p className="leading-[22px] whitespace-nowrap">
                 exclusively <span className="font-bold">by a </span>
-                <span className="font-bold text-[#fefc00] underline decoration-solid [text-decoration-skip-ink:none] [text-underline-position:from-font]">team</span>
+                <Link href="/about" className="font-bold text-[#fefc00] underline decoration-solid [text-decoration-skip-ink:none] [text-underline-position:from-font]">team</Link>
                 <span className="font-bold"> of professional engineers.</span>
               </p>
             </div>
