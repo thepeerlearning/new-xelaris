@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { ArrowRight, Eye } from "lucide-react"
+import { ArrowRight, Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useMemo, useState } from "react"
 
@@ -81,6 +81,7 @@ export function SignupForm() {
 
   const [emailError, setEmailError] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const days = useMemo(
     () => [
@@ -220,6 +221,21 @@ export function SignupForm() {
 
   const dayOptions = days
 
+  // Get phone code for selected country
+  const selectedCountryData = useMemo(() => {
+    return countries.find((c) => c.label === formData.phoneCountry)
+  }, [formData.phoneCountry])
+
+  const phonePlaceholder = useMemo(() => {
+    const phoneCode = selectedCountryData?.phone || "+1"
+    // Format placeholder based on country (default US format)
+    if (phoneCode === "+1") {
+      return "+1 (415) 642-5372"
+    }
+    // For other countries, show a simpler format
+    return `${phoneCode} 123 456 7890`
+  }, [selectedCountryData])
+
   // ---- Shared UI input styles ----
   const fieldLabel =
     "font-normal text-[17px] sm:text-[18.63px] text-[#091717] leading-[20px] sm:leading-[22px] mb-1"
@@ -273,11 +289,11 @@ export function SignupForm() {
           </div>
         ) : (
           <>
-            <div className="bg-white flex items-center p-4 sm:p-6 lg:py-10 w-full justify-center">
-              <div className="w-full max-w-full lg:max-w-[497px]">
-                {/* Step Indicator */}
-                <div className="flex flex-col items-center justify-center mb-6 sm:mb-8 lg:mb-[55px] w-full max-w-full sm:max-w-[90%] mx-auto">
-                  <div className="flex items-center w-full mb-4 sm:mb-6 lg:mb-8">
+        <div className="bg-white flex items-center p-4 sm:p-6 lg:py-10 w-full justify-center">
+          <div className="w-full max-w-full lg:max-w-[497px]">
+            {/* Step Indicator */}
+            <div className="flex flex-col items-center justify-center mb-6 sm:mb-8 lg:mb-[55px] w-full max-w-full sm:max-w-[90%] mx-auto">
+              <div className="flex items-center w-full mb-4 sm:mb-6 lg:mb-8">
                     <div
                       className={`${
                         step === 1 ? "bg-[#fefc00]" : "bg-[#1d1f24]"
@@ -292,10 +308,10 @@ export function SignupForm() {
                       >
                         1
                       </span>
-                    </div>
-                    <div className="flex-1 h-0.5 sm:h-1 mx-2 sm:mx-3 relative">
-                      <div className="h-full rounded-[20px] w-full bg-[#1d1f24]" />
-                    </div>
+                </div>
+                <div className="flex-1 h-0.5 sm:h-1 mx-2 sm:mx-3 relative">
+                  <div className="h-full rounded-[20px] w-full bg-[#1d1f24]" />
+                </div>
                     <div
                       className={`${
                         step === 2 ? "bg-[#fefc00]" : "bg-[#f3f3ed]"
@@ -310,14 +326,14 @@ export function SignupForm() {
                       >
                         2
                       </span>
-                    </div>
-                    <div className="flex-1 h-0.5 sm:h-1 mx-2 sm:mx-3 relative">
+                </div>
+                <div className="flex-1 h-0.5 sm:h-1 mx-2 sm:mx-3 relative">
                       <div
                         className={`h-full rounded-[20px] w-full ${
                           step === 3 ? "bg-[#1d1f24]" : "bg-[#f3f3ed]"
                         }`}
                       />
-                    </div>
+                </div>
                     <div
                       className={`${
                         step === 3 ? "bg-[#fefc00]" : "bg-[#f3f3ed]"
@@ -332,10 +348,10 @@ export function SignupForm() {
                       >
                         3
                       </span>
-                    </div>
-                  </div>
+                </div>
+              </div>
 
-                  <div className="flex items-center justify-between w-full">
+              <div className="flex items-center justify-between w-full">
                     <span
                       className={`${
                         step === 1
@@ -343,8 +359,8 @@ export function SignupForm() {
                           : "font-medium text-[rgba(9,23,23,0.83)]"
                       } text-[15px] sm:text-[16.672px] leading-[16px] sm:leading-[18px]`}
                     >
-                      Information
-                    </span>
+                  Information
+                </span>
                     <span
                       className={`${
                         step === 2
@@ -352,8 +368,8 @@ export function SignupForm() {
                           : "font-medium text-[rgba(9,23,23,0.83)]"
                       } text-[15px] sm:text-[16.781px] leading-[16px] sm:leading-[18px]`}
                     >
-                      Scheduling
-                    </span>
+                  Scheduling
+                </span>
                     <span
                       className={`${
                         step === 3
@@ -361,20 +377,20 @@ export function SignupForm() {
                           : "font-medium text-[rgba(9,23,23,0.83)]"
                       } text-[15px] sm:text-[16.781px] leading-[16px] sm:leading-[18px]`}
                     >
-                      Payment
-                    </span>
-                  </div>
-                </div>
+                  Payment
+                </span>
+              </div>
+            </div>
 
                 {/* Step 1 */}
-                {step === 1 && (
-                  <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-full lg:max-w-[416px]">
-                    <div className="flex flex-col">
+            {step === 1 && (
+              <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-full lg:max-w-[416px]">
+                <div className="flex flex-col">
                       <label className={fieldLabel}>Parent full name</label>
-                      <input
-                        type="text"
-                        placeholder="Alexa Plex"
-                        value={formData.parentName}
+                  <input
+                    type="text"
+                    placeholder="Alexa Plex"
+                    value={formData.parentName}
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -383,15 +399,15 @@ export function SignupForm() {
                           })
                         }
                         className={inputClass}
-                      />
-                    </div>
+                  />
+                </div>
 
-                    <div className="flex flex-col">
+                <div className="flex flex-col">
                       <label className={fieldLabel}>Child full name</label>
-                      <input
-                        type="text"
-                        placeholder="Ryan Plex"
-                        value={formData.childName}
+                  <input
+                    type="text"
+                    placeholder="Ryan Plex"
+                    value={formData.childName}
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -399,45 +415,45 @@ export function SignupForm() {
                           })
                         }
                         className={inputClass}
-                      />
-                    </div>
+                  />
+                </div>
 
-                    <div className="flex flex-col">
+                <div className="flex flex-col">
                       <label className={fieldLabel}>Email address</label>
-                      <input
-                        type="email"
-                        placeholder="alexaplex@gmail.co"
-                        value={formData.email}
-                        onChange={(e) => {
+                  <input
+                    type="email"
+                    placeholder="alexaplex@gmail.co"
+                    value={formData.email}
+                    onChange={(e) => {
                           setFormData({ ...formData, email: e.target.value })
                           setEmailError(false)
-                        }}
-                        className={`bg-white border ${
+                    }}
+                    className={`bg-white border ${
                           emailError ? "border-[#e23353]" : "border-[#d9dce1]"
-                        } rounded h-10 sm:h-11 px-3 sm:px-4 font-normal text-[17px] sm:text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none ${
+                    } rounded h-10 sm:h-11 px-3 sm:px-4 font-normal text-[17px] sm:text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none ${
                           emailError
                             ? "focus:border-[#e23353]"
                             : "focus:border-[#091717]"
-                        }`}
-                      />
-                    </div>
+                    }`}
+                  />
+                </div>
 
-                    {emailError && (
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-4 h-4 rounded-full bg-[#e23353] flex items-center justify-center shrink-0">
+                {emailError && (
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-4 h-4 rounded-full bg-[#e23353] flex items-center justify-center shrink-0">
                           <span className="text-white text-[15px] font-bold">
                             !
                           </span>
-                        </div>
-                        <p className="font-normal text-[15px] sm:text-[17px] text-[#e23353] leading-[20px] sm:leading-[22px]">
-                          Please enter an address.
-                        </p>
-                      </div>
-                    )}
+                    </div>
+                    <p className="font-normal text-[15px] sm:text-[17px] text-[#e23353] leading-[20px] sm:leading-[22px]">
+                      Please enter an address.
+                    </p>
+                  </div>
+                )}
 
-                    <div className="flex flex-col">
+                <div className="flex flex-col">
                       <label className={fieldLabel}>Phone number</label>
-                      <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1">
                         <Select
                           value={formData.phoneCountry}
                           onValueChange={(value) =>
@@ -462,10 +478,10 @@ export function SignupForm() {
                           </SelectContent>
                         </Select>
 
-                        <input
-                          type="tel"
-                          placeholder="+1 (415) 642-5372"
-                          value={formData.phoneNumber}
+                    <input
+                      type="tel"
+                          placeholder={phonePlaceholder}
+                      value={formData.phoneNumber}
                           onChange={(e) =>
                             setFormData({
                               ...formData,
@@ -473,53 +489,63 @@ export function SignupForm() {
                             })
                           }
                           className={inputClass}
-                        />
-                      </div>
-                    </div>
+                    />
+                  </div>
+                </div>
 
-                    <div className="flex flex-col">
+                <div className="flex flex-col">
                       <label className={fieldLabel}>Password</label>
-                      <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
-                        <input
-                          type="password"
-                          value={formData.password}
+                  <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
+                    <input
+                          type={showPassword ? "text" : "password"}
+                      value={formData.password}
                           onChange={(e) =>
                             setFormData({
                               ...formData,
                               password: e.target.value,
                             })
                           }
-                          className="flex-1 bg-transparent font-normal text-[19px] sm:text-[21px] text-[#091717] focus:outline-none"
-                        />
-                        <Eye className="w-4 h-4 text-[#091717] shrink-0" />
-                      </div>
-                    </div>
+                      className="flex-1 bg-transparent font-normal text-base  text-[#091717] focus:outline-none"
+                    />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="shrink-0 focus:outline-none"
+                        >
+                          {showPassword ? (
+                            <EyeOff className="w-4 h-4 text-[#091717]" />
+                          ) : (
+                            <Eye className="w-4 h-4 text-[#091717]" />
+                          )}
+                        </button>
+                  </div>
+                </div>
 
-                    <div className="mt-2 sm:mt-3">
-                      <p className="font-normal text-[15px] sm:text-[16.344px] text-[#1d1f24] leading-[16px] sm:leading-[18px]">
+                <div className="mt-2 sm:mt-3">
+                  <p className="font-normal text-[15px] sm:text-[16.344px] text-[#1d1f24] leading-[16px] sm:leading-[18px]">
                         By clicking &apos;Continue&apos;, you agree to
                         Xelaris&apos;s{" "}
-                        <Link href="/privacy" className="underline">
-                          Privacy Policy
+                    <Link href="/privacy" className="underline">
+                      Privacy Policy
                         </Link>{" "}
                         and{" "}
-                        <Link href="/terms" className="underline">
-                          Terms Of Service
+                    <Link href="/terms" className="underline">
+                      Terms Of Service
                         </Link>
                         .
-                      </p>
-                    </div>
-                  </div>
-                )}
+                  </p>
+                </div>
+              </div>
+            )}
 
                 {/* Step 2 */}
-                {step === 2 && (
-                  <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-full lg:max-w-[416px]">
+            {step === 2 && (
+              <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-full lg:max-w-[416px]">
                     {/* Time Zone (use select, styled like your design) */}
-                    <div className="flex flex-col">
+                <div className="flex flex-col">
                       <label className={fieldLabel}>Time Zone</label>
                       <select
-                        value={formData.timezone}
+                      value={formData.timezone}
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -540,14 +566,14 @@ export function SignupForm() {
                           </option>
                         ))}
                       </select>
-                    </div>
+                </div>
 
                     {/* Child Age */}
-                    <div className="flex flex-col">
+                <div className="flex flex-col">
                       <label className={fieldLabel}>Select Child Age</label>
-                      <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
+                  <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
                         <select
-                          value={formData.childAge}
+                      value={formData.childAge}
                           onChange={(e) =>
                             setFormData({
                               ...formData,
@@ -567,17 +593,17 @@ export function SignupForm() {
                           ))}
                         </select>
                     
-                      </div>
-                    </div>
+                  </div>
+                </div>
 
                     {/* Class Duration */}
-                    <div className="flex flex-col">
+                <div className="flex flex-col">
                       <label className={fieldLabel}>
-                        Select Class Duration
-                      </label>
-                      <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
+                    Select Class Duration
+                  </label>
+                  <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
                         <select
-                          value={formData.classDuration}
+                      value={formData.classDuration}
                           onChange={(e) =>
                             setFormData({
                               ...formData,
@@ -597,17 +623,17 @@ export function SignupForm() {
                           ))}
                         </select>
                    
-                      </div>
-                    </div>
+                  </div>
+                </div>
 
                     {/* Day 1 */}
-                    <div className="flex flex-col">
+                <div className="flex flex-col">
                       <label className={fieldLabel}>
-                        What Day Are You Available For Class
-                      </label>
-                      <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
+                    What Day Are You Available For Class
+                  </label>
+                  <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
                         <select
-                          value={formData.availableDay}
+                      value={formData.availableDay}
                           onChange={(e) =>
                             setFormData({
                               ...formData,
@@ -626,16 +652,16 @@ export function SignupForm() {
                           ))}
                         </select>
                    
-                      </div>
-                    </div>
+                  </div>
+                </div>
 
                     {/* Time 1 */}
-                    <div className="flex flex-col">
-                      <label className="font-normal text-sm sm:text-[15.63px] text-[#1c1e21] leading-[20px] sm:leading-[22px] mb-1">
-                        What Time Are You Available For Class
-                      </label>
-                      <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
-                        <input
+                <div className="flex flex-col">
+                  <label className="font-normal text-sm sm:text-[15.63px] text-[#1c1e21] leading-[20px] sm:leading-[22px] mb-1">
+                    What Time Are You Available For Class
+                  </label>
+                  <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
+                    <input
                           type="time"
                           step={60}
                           value={toHHMM(formData.availableTime)}
@@ -695,8 +721,8 @@ export function SignupForm() {
                                   timeTwo: e.target.value,
                                 })
                               }
-                              className="flex-1 bg-transparent font-normal text-[17px] sm:text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none"
-                            />
+                      className="flex-1 bg-transparent font-normal text-[17px] sm:text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none"
+                    />
                             <svg
                               width="20"
                               height="20"
@@ -711,7 +737,7 @@ export function SignupForm() {
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                               />
-                            </svg>
+                    </svg>
                           </div>
                         </div>
                       </>
@@ -731,8 +757,8 @@ export function SignupForm() {
                     />
                   </Elements>
                 )}
-              </div>
-            </div>
+                  </div>
+                </div>
 
             {/* CTA Buttons (keep design; step3 uses Stripe submit inside PaymentPanel) */}
             {step < 4 && step !== 3 && (
@@ -889,30 +915,30 @@ function PaymentPanel({
   }
 
   return (
-    <div className="flex flex-col gap-4 sm:gap-[18px] w-full max-w-full lg:max-w-[416px]">
-      {/* Name on Card */}
-      <div className="flex flex-col">
-        <label className="font-normal text-[17px] sm:text-[18.63px] text-[#091717] leading-[20px] sm:leading-[22px] mb-1">
-          Name on card
-        </label>
-        <input
-          type="text"
-          placeholder="Alexa Plex"
-          value={formData.cardName}
+              <div className="flex flex-col gap-4 sm:gap-[18px] w-full max-w-full lg:max-w-[416px]">
+                {/* Name on Card */}
+                <div className="flex flex-col">
+                  <label className="font-normal text-[17px] sm:text-[18.63px] text-[#091717] leading-[20px] sm:leading-[22px] mb-1">
+                    Name on card
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Alexa Plex"
+                    value={formData.cardName}
           onChange={(e) =>
             setFormData({ ...formData, cardName: e.target.value })
           }
           className={inputClass}
-        />
-      </div>
+                  />
+                </div>
 
       {/* Card Number (Stripe Element) */}
-      <div className="flex flex-col">
-        <label className="font-normal text-[17px] sm:text-[18.63px] text-[#091717] leading-[20px] sm:leading-[22px] mb-1">
-          Card number
-        </label>
+                <div className="flex flex-col">
+                  <label className="font-normal text-[17px] sm:text-[18.63px] text-[#091717] leading-[20px] sm:leading-[22px] mb-1">
+                    Card number
+                  </label>
 
-        <div className="relative">
+                  <div className="relative">
           <div
             className={`${inputClass} pr-24 sm:pr-[150px] flex items-center`}
           >
@@ -924,36 +950,36 @@ function PaymentPanel({
             <div className="w-5 h-3 sm:w-6 sm:h-4 bg-blue-600 rounded flex items-center justify-center text-white text-[7px] sm:text-[8px] font-bold">
               VISA
             </div>
-            <div className="w-5 h-3 sm:w-6 sm:h-4 flex items-center justify-center">
-              <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500 -mr-0.5 sm:-mr-1" />
-              <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-400" />
-            </div>
+                      <div className="w-5 h-3 sm:w-6 sm:h-4 flex items-center justify-center">
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500 -mr-0.5 sm:-mr-1" />
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-400" />
+                      </div>
             <div className="w-5 h-3 sm:w-6 sm:h-4 bg-blue-400 rounded flex items-center justify-center text-white text-[6px] sm:text-[7px] font-bold">
               AMEX
             </div>
             <div className="w-5 h-3 sm:w-6 sm:h-4 bg-white border border-gray-300 rounded flex items-center justify-center text-[6px] sm:text-[7px] font-bold">
               JCB
             </div>
-          </div>
-        </div>
-      </div>
+                    </div>
+                  </div>
+                </div>
 
       {/* Expiry and CVC (Stripe Elements) */}
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-[21px]">
-        <div className="flex flex-col flex-1">
-          <label className="font-normal text-[17px] sm:text-[18.63px] text-[#091717] leading-[20px] sm:leading-[22px] mb-1">
-            Expiry
-          </label>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-[21px]">
+                  <div className="flex flex-col flex-1">
+                    <label className="font-normal text-[17px] sm:text-[18.63px] text-[#091717] leading-[20px] sm:leading-[22px] mb-1">
+                      Expiry
+                    </label>
           <div className={`${inputClass} flex items-center`}>
             <CardExpiryElement options={expiryOptions} className="w-full" />
           </div>
-        </div>
+                  </div>
 
-        <div className="flex flex-col flex-1">
-          <label className="font-normal text-[17px] sm:text-[18.63px] text-[#091717] leading-[20px] sm:leading-[22px] mb-1">
-            CVV
-          </label>
-          <div className="relative">
+                  <div className="flex flex-col flex-1">
+                    <label className="font-normal text-[17px] sm:text-[18.63px] text-[#091717] leading-[20px] sm:leading-[22px] mb-1">
+                      CVV
+                    </label>
+                    <div className="relative">
             <div className={`${inputClass} pr-10 flex items-center`}>
               <CardCvcElement options={cvcOptions} className="w-full" />
             </div>
@@ -982,50 +1008,50 @@ function PaymentPanel({
                 strokeWidth="2"
               />
               <rect x="18" y="9" width="3" height="2" fill="#091717" />
-            </svg>
-          </div>
-        </div>
-      </div>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
 
-      <div className="flex items-start gap-2 mt-4">
-        <span className="text-[15px] sm:text-[16.672px] shrink-0">🔒</span>
-        <p className="font-normal text-[15px] sm:text-[16.672px] text-[#1d1f24] leading-[16px] sm:leading-[18px] flex-1">
+                <div className="flex items-start gap-2 mt-4">
+                  <span className="text-[15px] sm:text-[16.672px] shrink-0">🔒</span>
+                  <p className="font-normal text-[15px] sm:text-[16.672px] text-[#1d1f24] leading-[16px] sm:leading-[18px] flex-1">
           We use Stripe to securely manage your payment information and we never
           store your complete card number ourselves.
-        </p>
-      </div>
+                  </p>
+                </div>
 
-      <div className="flex justify-center mt-2">
-        <div className="text-[15px] sm:text-[17px] text-gray-600">
-          Powered by <span className="font-bold text-[#635BFF]">stripe</span>
+                <div className="flex justify-center mt-2">
+                  <div className="text-[15px] sm:text-[17px] text-gray-600">
+                    Powered by <span className="font-bold text-[#635BFF]">stripe</span>
+          </div>
         </div>
-      </div>
 
       {/* Buttons (keep your CTA design) */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-[14.35px] w-full max-w-full lg:max-w-[422px] min-h-[54px]">
-        <button
+              <button
           onClick={() => setStep(2)}
-          className="border border-black rounded-2xl px-6 sm:px-12 py-2.5 w-full sm:w-[204px] font-medium text-[#161a20] text-[19px] sm:text-[21px] text-center tracking-[-0.4px] leading-6"
+                className="border border-black rounded-2xl px-6 sm:px-12 py-2.5 w-full sm:w-[204px] font-medium text-[#161a20] text-[19px] sm:text-[21px] text-center tracking-[-0.4px] leading-6"
           disabled={isOuterSubmitting}
           type="button"
-        >
-          Back
-        </button>
+              >
+                Back
+              </button>
 
-        <Button
-          type="colored"
+            <Button
+              type="colored"
           onClick={handlePay}
           disabled={isOuterSubmitting || !stripe}
           className="flex items-center justify-center gap-2 !py-3 !px-6 sm:!px-12 w-full sm:w-[204px]"
-        >
-          <span className="text-[19px] sm:text-[21px]">
+            >
+              <span className="text-[19px] sm:text-[21px]">
             {isOuterSubmitting
               ? "Processing..."
               : amount
               ? `Pay $${amount}`
               : "Make Payment"}
-          </span>
-        </Button>
+              </span>
+            </Button>
       </div>
 
       {message && (
