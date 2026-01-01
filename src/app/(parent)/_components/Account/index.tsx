@@ -294,7 +294,7 @@ export function PersonalInfo({ profile }: ProfileProps) {
                     value={field.value || ""}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select your country" />
                       </SelectTrigger>
                     </FormControl>
@@ -325,7 +325,7 @@ export function PersonalInfo({ profile }: ProfileProps) {
                     value={field.value || ""}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select your timezone" />
                       </SelectTrigger>
                     </FormControl>

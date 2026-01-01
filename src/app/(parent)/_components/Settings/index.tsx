@@ -8,9 +8,9 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { changeParentPassword } from "@/lib/redux"
 import { useAppDispatch } from "@/lib/redux/hooks"
 import { cn } from "@/lib/utils"
@@ -104,10 +104,7 @@ export function ChangePassword() {
             name="currentPassword"
             render={({ field, fieldState }) => (
               <FormItem>
-                <FormLabel htmlFor="currentPassword">
-                  Current Password
-                </FormLabel>
-
+                <Label htmlFor="currentPassword"> Current Password</Label>
                 <FormControl>
                   <div className="relative">
                     <Input
@@ -153,7 +150,7 @@ export function ChangePassword() {
             name="password"
             render={({ field, fieldState }) => (
               <FormItem>
-                <FormLabel htmlFor="password">New password</FormLabel>
+                <Label htmlFor="password"> New Password</Label>
 
                 <FormControl>
                   <div className="relative">
@@ -199,9 +196,7 @@ export function ChangePassword() {
             render={({ field, fieldState }) => (
               <FormItem>
                 <div className="w-full h-[14px] flex justify-between items-center">
-                  <FormLabel htmlFor="confirmPassword">
-                    Confirm new password
-                  </FormLabel>
+                  <Label htmlFor="confirmPassword">Confirm New Password</Label>
                 </div>
 
                 <FormControl>

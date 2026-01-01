@@ -54,7 +54,7 @@ export function LoginForm() {
           <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full">
             {/* Email Field */}
             <div className="flex flex-col gap-1">
-              <label className="font-normal text-[18.63px] text-[#091717] leading-[22px]">
+              <label className="font-normal text-[18.63px] text-[#091717] leading-5.5">
                 Email address
               </label>
               <div className="relative">
@@ -65,7 +65,7 @@ export function LoginForm() {
                   placeholder="alexaplex@gmail.co"
                   className={`bg-white border ${
                     emailError ? "border-[#e23353]" : "border-[#d9dce1]"
-                  } rounded-[4px] h-10 px-4 w-full font-normal text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none ${
+                  } rounded-lg h-10 px-4 w-full font-normal text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none ${
                     emailError
                       ? "focus:border-[#e23353]"
                       : "focus:border-[#091717]"
