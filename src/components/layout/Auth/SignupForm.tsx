@@ -1,6 +1,13 @@
 "use client"
 
 import Button from "@/components/ui/buttons/Button"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { ArrowRight, Eye } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useMemo, useState } from "react"
@@ -17,6 +24,7 @@ import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
 import { getCookie } from "cookies-next"
 
 import { timezoneOptions } from "@/data"
+import { countries } from "@/lib/data"
 
 import { env } from "@/config/env"
 import {
@@ -43,6 +51,7 @@ export function SignupForm() {
     parentName: userData?.parent_full_name ?? "",
     childName: userData?.child_full_name ?? "",
     email: userData?.email ?? "",
+    phoneCountry: "United States",
     phoneNumber: userData?.phone ?? "",
     password: userData?.password ?? "",
 
@@ -430,26 +439,29 @@ export function SignupForm() {
                     <div className="flex flex-col">
                       <label className={fieldLabel}>Phone number</label>
                       <div className="flex flex-col gap-1">
-                        <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
-                          <span className="font-normal text-[17px] sm:text-[18px] text-[#bdc1ca]">
-                            United States
-                          </span>
-                          <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            className="transform   sm:w-6 sm:h-6 shrink-0"
-                          >
-                            <path
-                              d="M6 9L12 15L18 9"
-                              stroke="#091717"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        </div>
+                        <Select
+                          value={formData.phoneCountry}
+                          onValueChange={(value) =>
+                            setFormData({
+                              ...formData,
+                              phoneCountry: value,
+                            })
+                          }
+                        >
+                          <SelectTrigger className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 font-normal text-[17px] sm:text-[18px] text-[#091717] focus:outline-none focus:border-[#091717] w-full data-[placeholder]:text-[#bdc1ca]">
+                            <SelectValue placeholder="Select country" />
+                          </SelectTrigger>
+                          <SelectContent className="max-h-[300px]">
+                            {countries.map((country) => (
+                              <SelectItem
+                                key={country.code}
+                                value={country.label}
+                              >
+                                {country.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
 
                         <input
                           type="tel"
@@ -507,45 +519,28 @@ export function SignupForm() {
                     {/* Time Zone (use select, styled like your design) */}
                     <div className="flex flex-col">
                       <label className={fieldLabel}>Time Zone</label>
-                      <div className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 flex items-center justify-between">
-                        <select
-                          value={formData.timezone}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              timezone: e.target.value,
-                            })
-                          }
-                          className="flex-1 bg-transparent font-normal text-[17px] sm:text-[18px] text-[#091717] focus:outline-none"
-                        >
-                          <option value="" disabled>
-                            Select timezone
+                      <select
+                        value={formData.timezone}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            timezone: e.target.value,
+                          })
+                        }
+                        className="bg-white border border-[#d9dce1] rounded h-10 sm:h-11 px-3 sm:px-4 font-normal text-[17px] sm:text-[18px] text-[#091717] focus:outline-none focus:border-[#091717] w-full"
+                      >
+                        <option value="" disabled>
+                          Select timezone
+                        </option>
+                        {timezoneSelectOptions.map((opt: any) => (
+                          <option
+                            key={opt.value ?? opt.label}
+                            value={opt.value}
+                          >
+                            {opt.label}
                           </option>
-                          {timezoneSelectOptions.map((opt: any) => (
-                            <option
-                              key={opt.value ?? opt.label}
-                              value={opt.value}
-                            >
-                              {opt.label}
-                            </option>
-                          ))}
-                        </select>
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          className="transform   sm:w-6 sm:h-6 shrink-0"
-                        >
-                          <path
-                            d="M6 9L12 15L18 9"
-                            stroke="#091717"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </div>
+                        ))}
+                      </select>
                     </div>
 
                     {/* Child Age */}
@@ -572,21 +567,7 @@ export function SignupForm() {
                             </option>
                           ))}
                         </select>
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          className="transform   sm:w-6 sm:h-6 shrink-0"
-                        >
-                          <path
-                            d="M6 9L12 15L18 9"
-                            stroke="#091717"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                    
                       </div>
                     </div>
 
@@ -616,21 +597,7 @@ export function SignupForm() {
                             </option>
                           ))}
                         </select>
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          className="transform   sm:w-6 sm:h-6 shrink-0"
-                        >
-                          <path
-                            d="M6 9L12 15L18 9"
-                            stroke="#091717"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                   
                       </div>
                     </div>
 
@@ -659,21 +626,7 @@ export function SignupForm() {
                             </option>
                           ))}
                         </select>
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          className="transform   sm:w-6 sm:h-6 shrink-0"
-                        >
-                          <path
-                            d="M6 9L12 15L18 9"
-                            stroke="#091717"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                   
                       </div>
                     </div>
 
@@ -695,21 +648,7 @@ export function SignupForm() {
                           }
                           className="flex-1 bg-transparent font-normal text-[17px] sm:text-[18px] text-[#091717] placeholder:text-[#bdc1ca] focus:outline-none"
                         />
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          className="transform   sm:w-6 sm:h-6 shrink-0"
-                        >
-                          <path
-                            d="M6 9L12 15L18 9"
-                            stroke="#091717"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                     
                       </div>
                     </div>
 
@@ -738,21 +677,7 @@ export function SignupForm() {
                                 </option>
                               ))}
                             </select>
-                            <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              className="transform   sm:w-6 sm:h-6 shrink-0"
-                            >
-                              <path
-                                d="M6 9L12 15L18 9"
-                                stroke="#091717"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
+                          
                           </div>
                         </div>
 
