@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "api.thepeerlearning.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "api.thepeerlearning.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "www.figma.com",
         pathname: "/api/mcp/asset/**",
       },

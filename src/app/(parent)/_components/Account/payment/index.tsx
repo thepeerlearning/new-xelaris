@@ -27,7 +27,7 @@ export function PaymentInfo() {
   }, [dispatch])
 
   return (
-    <div className="w-full h-full space-y-4">
+    <div className="w-full h-full space-y-4 text-secondary ">
       <h2 className="text-xl font-semibold mb-4">Payment information</h2>
       {loading ? (
         <div className="w-full max-w-[560px] h-full md:h-[298px] rounded-[12px] border border-solid border-[#EAECF0] px-8 py-4 flex flex-col gap-2 place-content-center">

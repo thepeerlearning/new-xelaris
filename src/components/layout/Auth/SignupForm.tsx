@@ -143,7 +143,6 @@ export function SignupForm() {
         dispatch(updateUserData({ data: inputData }))
         setStep(2)
       } catch {
-        // keep UI; optionally toast here
       } finally {
         setIsSubmitting(false)
       }
@@ -1063,7 +1062,6 @@ function PaymentPanel({
         </div>
       </div>
 
-    
       <div className="flex items-start gap-2 mt-4">
         <span className="text-[15px] sm:text-[16.672px] shrink-0">🔒</span>
         <p className="font-normal text-[15px] sm:text-[16.672px] text-[#1d1f24] leading-[16px] sm:leading-[18px] flex-1">
