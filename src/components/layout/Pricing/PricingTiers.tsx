@@ -46,7 +46,7 @@ const pricingData: Record<ProgramType, PricingTier[]> = {
     {
       id: "3",
       sessionType: "45 minutes private session twice a week",
-      price: "$470",
+      price: "$500",
       features: [
         "Twice-weekly 45-min 1:1 session led by a professional engineer.",
         "Personalized lessons tailored to your child`s pace and learning style.",
@@ -58,7 +58,7 @@ const pricingData: Record<ProgramType, PricingTier[]> = {
     {
       id: "4",
       sessionType: "1 hour private session twice a week",
-      price: "$570",
+      price: "$600",
       features: [
         "Twice-weekly 1-hour 1:1 session led by a professional engineer.",
         "Personalized lessons tailored to your child`s pace and learning style.",
